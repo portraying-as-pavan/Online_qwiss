@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Online Exam</title>
+
+	<!-- Links -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	
+    <!-- Links -->
+
+    <style type="text/css">
+    	hr{
+    		color: solidblack;
+    	}
+
+    /*	div .menu{
+    		border-right: 1px  solid black;
+
+
+    		 
+    	}*/
+    	.timer{
+    		height: 50px;
+    		background-color: grey;
+    		
+    	}
+    	.header{
+    		height: 50px;
+    		background-color: rgb(212,202,74);
+
+    	}
+    	.username{
+    		height: 50px;
+    		background-color: rgb(68,135,88);
+
+    	}
+    	.questionstab{
+    		
+    		height: 600px;
+          box-shadow: 5px 5px;
+    	}
+    	div .questionstab{
+    		border : 1px solid black;
+    		border-radius: 6px;
+    	}
+    	.qnav{
+    		
+    	}
+    	.endtest{
+    		position: relative;
+    		left: 75vw;
+    	}
+    	 
+    	
+    	#pbuttons{
+    		display: grid;
+			grid-template-columns: repeat(4,1fr);
+            border: 1px solid blue;
+            border-radius: 4px;
+    	}
+    	#pbuttons div{
+    		margin-left: 5px;
+    		margin-bottom: 5px;
+    	}
+    	#cbuttons{
+    		
+    		display: none;
+    		grid-template-columns: repeat(4,1fr);
+            border: 1px solid blue;
+             border-radius: 4px;
+    	}
+    	#cbuttons div{
+    		margin-left: 5px;
+    		margin-bottom: 5px;
+
+    	}
+    	#mbuttons{
+    		
+    		display: none;
+    		grid-template-columns: repeat(4,1fr);
+            border: 1px solid blue;
+            border-radius: 4px;
+    	}
+    	#mbuttons div{
+    		margin-left: 5px;
+    		margin-bottom: 5px;
+
+
+    	}
+    	.questions{
+    		display: none;
+    	}
+      #offsetter{
+        display: none;
+      }
+
+    	
+        
+    </style>
+    
+</head>
+<body>
+<div class="poppup">
+	<div class="row">
+	
+  
+   <!-- Menu -->
+	<div class="col-md-2 menu">
+  
+  <div class="timer" id="timer">
+    <h4>Timer </h4>
+  </div>
+  <hr >
+  <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    
+  <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false" onclick="pbutton()">Physics</a>
+  <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false" onclick="mbutton()">Mathematics</a>
+  <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false" onclick="cbutton()">Chemistry</a>
+  
+  </div>
+  <hr>
+  <!------------instructions--------->
+  
+  <!-- For buttons -->
+ <div id="pbuttons">
+ <div><button type="button" id="1"  onclick="phyfun(1)">01</button></div>
+ <div><button type="button" id="2"  onclick="phyfun(2)">02</button></div>
+ <div><button type="button" id="3"  onclick="phyfun(3)">03</button></div>
+ <div><button type="button" id="4"  onclick="phyfun(4)">04</button></div> 
+ <div><button type="button" id="5"  onclick="phyfun(5)">05</button></div>
+ <div><button type="button" id="6"  onclick="phyfun(6)">06</button></div>
+ <div><button type="button" id="7"  onclick="phyfun(7)">07</button></div>
+ <div><button type="button" id="8"  onclick="phyfun(8)">08</button></div>
+ <div><button type="button" id="9"  onclick="phyfun(9)">09</button></div>
+ <div><button type="button" id="10" onclick="phyfun(10)">10</button></div>
+ <div><button type="button" id="11" onclick="phyfun(11)">11</button></div>
+ <div><button type="button" id="12" onclick="phyfun(12)">12</button></div> 
+ <div><button type="button" id="13" onclick="phyfun(13)">13</button></div>
+ <div><button type="button" id="14" onclick="phyfun(14)">14</button></div>
+ <div><button type="button" id="15" onclick="phyfun(15)">15</button></div>
+<!--<div><button type="button" id="16" onclick="phyfun(16)">16</button></div>
+ <div><button type="button" id="17" onclick="phyfun(17)">17</button></div>
+ <div><button type="button" id="18" onclick="phyfun(18)">18</button></div>
+ <div><button type="button" id="19" onclick="phyfun(19)">19</button></div>
+ <div><button type="button" id="20" onclick="phyfun(20)">20</button></div>-->
+</div>
+
+<div id="mbuttons">
+ <div><button type="button" id="21"  onclick="matfun(21)">16</button></div>
+ <div><button type="button" id="22"  onclick="matfun(22)">17</button></div>
+ <div><button type="button" id="23"  onclick="matfun(23)">18</button></div>
+ <div><button type="button" id="24"  onclick="matfun(24)">19</button></div> 
+ <div><button type="button" id="25"  onclick="matfun(25)">20</button></div>
+ <div><button type="button" id="26"  onclick="matfun(26)">21</button></div>
+ <div><button type="button" id="27"  onclick="matfun(27)">22</button></div>
+ <div><button type="button" id="28"  onclick="matfun(28)">23</button></div>
+ <div><button type="button" id="29"  onclick="matfun(29)">24</button></div>
+ <div><button type="button" id="30"  onclick="matfun(30)">25</button></div>
+ <div><button type="button" id="31"  onclick="matfun(31)">26</button></div>
+ <div><button type="button" id="32"  onclick="matfun(32)">27</button></div> 
+ <div><button type="button" id="33"  onclick="matfun(33)">28</button></div>
+ <div><button type="button" id="34"  onclick="matfun(34)">29</button></div>
+ <div><button type="button" id="35"  onclick="matfun(35)">30</button></div>
+<!-- <div><button type="button" id="36"  onclick="matfun(36)">36</button></div>
+ <div><button type="button" id="37"  onclick="matfun(37)">37</button></div>
+ <div><button type="button" id="38"  onclick="matfun(38)">38</button></div>
+ <div><button type="button" id="39"  onclick="matfun(39)">39</button></div>
+ <div><button type="button" id="40"  onclick="matfun(40)">40</button></div>-->
+</div>
+
+<div id="cbuttons">
+ <div><button type="button" id="41"  onclick="chfun(41)">31</button></div>
+ <div><button type="button" id="42"  onclick="chfun(42)">32</button></div>
+ <div><button type="button" id="43"  onclick="chfun(43)">33</button></div>
+ <div><button type="button" id="44"  onclick="chfun(44)">34</button></div> 
+ <div><button type="button" id="45"  onclick="chfun(45)">35</button></div>
+ <div><button type="button" id="46"  onclick="chfun(46)">36</button></div>
+ <div><button type="button" id="47"  onclick="chfun(47)">37</button></div>
+ <div><button type="button" id="48"  onclick="chfun(48)">38</button></div>
+ <div><button type="button" id="49"  onclick="chfun(49)">39</button></div>
+ <div><button type="button" id="50"  onclick="chfun(50)">40</button></div>
+ <div><button type="button" id="51"  onclick="chfun(51)">41</button></div>
+ <div><button type="button" id="52"  onclick="chfun(52)">42</button></div> 
+ <div><button type="button" id="53"  onclick="chfun(53)">43</button></div>
+ <div><button type="button" id="54"  onclick="chfun(54)">44</button></div>
+ <div><button type="button" id="55"  onclick="chfun(55)">45</button></div>
+ <!--<div><button type="button" id="56"  onclick="chfun(56)">56</button></div>
+ <div><button type="button" id="57"  onclick="chfun(57)">57</button></div>
+ <div><button type="button" id="58"  onclick="chfun(58)">58</button></div>
+ <div><button type="button" id="59"  onclick="chfun(59)">59</button></div>
+ <div><button type="button" id="60"  onclick="chfun(60)">60</button></div>-->
+</div>
+<!-- For buttons -->
+
+  </div>
+
+  <!-- Menu -->
+
+
+   <!-- Content Area -->
+  
+  <div class="col-md-10">
+     
+<!-- Header Section -->
+     <div class="row ">
+      <div class="col-md-9 header">
+        <h2>Q-Wissenaire </h2>
+      </div>
+      <div class="col-md-3 username">
+        <h4>XIth Class </h4>
+      </div>
+       </div>
+   <hr >
+  <!-- Header Section -->
+  
+  <!-- Question Display -->
+  <div class="questionstab">
+<div class="tab-content qnav" id="v-pills-tabContent">
+<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" >
+  <form id="questions" action="ans11.php" method="POST">
+    <div id="p1" class="container questions"> 
+  		<h3>Question1 :</h3> 
+  		<hr>
+  		<p>  A particle is projected with a velocity 10m/s at an inclination 450
+to the horizontal. Find the
+minimum radius of curvature of the trajectory</p>
+	<div>
+	
+		<input type="radio" name="1" value="a"> A. 2.54m  <br>
+		<input type="radio" name="1" value="b"> B. 5.1m  <br>
+		<input type="radio" name="1" value="c"> C. 7.2m  <br>
+		<input type="radio" name="1" value="d"> D. None of the above  <br>
+    <input type="radio" name="1" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+		
+	</div>
+  </div>
+
+    <div id="p2" class="container questions"> 
+    <h3>Question2 :</h3>
+    	<hr>
+  		<p>Find the moment of inertia of the plate of a right angled triangle shape , whose mass is m and side
+ac=bc =ab about an axis perpendicular to the plane of the plate and passing through midpoint of side
+ab  :</p> 
+  		
+  	
+  	
+	<div>
+	
+		<input type="radio" name="2" value="a"> A. ma<sup>2</sup>/24 <br>
+		<input type="radio" name="2" value="b"> B. ma<sup>2</sup>/12 <br>
+		<input type="radio" name="2" value="c"> C. ma<sup>2</sup>/16 <br>
+		<input type="radio" name="2" value="d"> D. 3ma<sup>2</sup>/8 <br>
+    <input type="radio" name="2" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p3" class="container questions"> 
+  		<h3>Question3 :</h3> 
+  		<hr>
+  		<p> An object is ejected from a satellite with a constant speed v around a circular orbit around earth
+The object is having mass m and escapes the gravitational pull of earth .At that time the kinetic
+energy of the object is </p> 
+	<div>
+	
+		<input type="radio" name="3" value="a"> A. mv<sup>2</sup>/2 <br>
+		<input type="radio" name="3" value="b"> B. 3mv<sup>2</sup>/12 <br>
+		<input type="radio" name="3" value="c"> C. 2mv<sup>2</sup> <br>
+		<input type="radio" name="3" value="d"> D. mv<sup>2</sup> <br>
+    <input type="radio" name="3" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p4" class="container questions"> 
+  		<h3>Question4 :</h3> 
+  		<hr>
+  		<p> Consider a spherical shell of inner radius 5cm and outer radius 25cm .The temperature of inner and
+outer surfaces are fixed and are 800K and 300K respectively. Find the temperature at a point which is
+10cm away from the center of the spherical shell</p> 
+	<div>
+		<input type="radio" name="4" value="a"> A. 486.5K <br>
+		<input type="radio" name="4" value="b"> B. 487.5K <br>
+		<input type="radio" name="4" value="c"> C. 485.5K <br>
+		<input type="radio" name="4" value="d"> D. None of the above <br>
+    <input type="radio" name="4" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  
+  <div id="p5" class="container questions"> 
+  		<h3>Question5 :</h3> 
+  		<hr>
+  		<p> The cylinders A and B fitted with pistons contain equal amounts of an ideal diatomic gas at
+300K.the piston of A is free to move while that of B is held fixed the same of heat is given to the gas
+in each cylinder.if the rise in the temperature of the gas in A is 30K,then the rise in temperature of gas
+in B is  </p> 
+	<div>
+	
+		<input type="radio" name="5" value="a"> A. 30K <br>
+		<input type="radio" name="5" value="b"> B. 18K <br>
+		<input type="radio" name="5" value="c"> C. 50K <br>
+		<input type="radio" name="5" value="d"> D. 42K <br>
+    <input type="radio" name="5" value="e" id="offsetter" checked="checked">
+
+		<button type="reset" class="btn btn-info clear" id="clear" > Clear </button>
+	</div>
+  </div>
+  <div id="p6" class="container questions"> 
+  		<h3>Question6 :</h3> 
+  		<hr>
+  		<p> During an exeriment an ideal gas is found to obey a condition P.P/&rho;
+
+= constant. The gas is initially at a
+temperature of T<sup>0</sup>, pressure P<sup>0</sup> and density &rho;<sup>0</sup> . The gas expands such that density changes to &rho;<sup>0</sup>/2
+
+
+ .  </p> 
+	<div>
+	
+		<input type="radio" name="6" value="a"> A. Temperature changes to &radic;2T<sup>0</sup> . <br>
+		<input type="radio" name="6" value="b"> B. Pressure changes to &radic;2P<sup>0</sup> . <br>
+		<input type="radio" name="6" value="c"> C. The graph of the above process on P-T diagram is parabola. <br>
+		<input type="radio" name="6" value="d"> D. The graph of the above process on P-T diagram is straight line <br>
+    <input type="radio" name="6" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p7" class="container questions"> 
+  		<h3>Question7 :</h3> 
+  		<hr>
+  		<p> A piece of wire is bent in the shape of a parabola y = kx<sup>2</sup>
+(y-axis vertical) with a bead of mass m on
+it. The bead can slide on the wire without friction. It stays at the lowest point of the parabola when the
+wire is at rest. The wire is now accelerated parallel to the x-axis with a constant acceleration a. The
+distance of the new equilibrium position of the bead, where the bead can stay at rest with respect to
+the wire, from the y-axis is.  </p> 
+	<div>
+	
+		<input type="radio" name="7" value="a"> A. a/3gk <br>
+		<input type="radio" name="7" value="b"> B. a/2gk <br>
+		<input type="radio" name="7" value="c"> C. 2a/gk <br>
+		<input type="radio" name="7" value="d"> D. 3a/gk <br>
+    <input type="radio" name="7" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p8" class="container questions"> 
+  		<h3>Question8 :</h3> 
+  		<hr>
+  		<p> )Consider a particle thrown up, with a velocity of 10m/s on an incline of inclination 30<sup>o</sup>
+and the angle
+projection with respect to ground is 60<sup>o</sup>
+.Let its total time of flight be x, maximum height attained be y,
+range be z. 'z=a.x.y' .Find the value of [a]. where[.] is G.I.F </p> 
+	<div>
+	
+		<input type="text" name="8" >  <br>
+		
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p9" class="container questions"> 
+  		<h3>Question9 :</h3> 
+  		<hr>
+  		<p> Two tuning forks P and Q are vibrated together. The number of beats produced are represented by
+the straight line OA in the following graph. After loading Q with wax again these are vibrated together
+and the beats produced are represented by the line OB. If the frequency of P is 341Hz, the frequency
+of Q will be </p>
+
+	
+	<div>
+	
+		<input type="text" name="9" >  <br>
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+	<img src="phy9.png" alt="Graph for question 9" width="200" height="200">
+  </div>
+  <div id="p10" class="container questions"> 
+  		<h3>Question10 :</h3> 
+  		<hr>
+  		<p>  metal rod of length L and uniform cross section area A, with variable thermal conductivity given
+by K(x)=K0 sec[(&pi;/6L).X]
+. If the end A is maintained at temperature T<sub>o</sub>, the rod carries a thermal current
+(I<sub>o</sub>) from b to a in steady state and [I<sub>o</sub>L/AT<sub>o</sub> = 4&pi;K<sub>o</sub>/3]. Let the temperature of the end b is a T<sub>o</sub>. Find a.
+ </p> 
+	<div>
+	
+		<input type="text" name="10" >  <br>
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p11" class="container questions"> 
+  		<h3>Question11 :</h3> 
+  		<hr>
+  		<p> A very large block of ice of size of a volley ball court and of uniform thickness of 8m is floating on
+water a person standing near its edge wishes to fetch a bucket full of water using a rope the smallest
+length of the rope required(round off the answer to nearest integer </p> 
+	<div>
+	
+		<input type="text" name="11" > <br>
+		
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p12" class="container questions"> 
+  		<h3><strong>Paragraph type questions </strong><br>
+  		Paragraph 1 for
+  		    Question 12,13,14,15 :</h3> 
+  		<hr>
+  		<p> There is a situation that a volleyball match is going on. A boy is going to serve the ball to the
+opponent team by hitting the ball with a velocity V at a height h above the ground at an angle of θ.
+He is standing at a distance of d from the net(height H) and T is the time taken by the ball in the
+above situation.(H>h)</p> <br> <h3> Question 12</h3>
+<p> What is the maximum height H of net so that his serve crosses the net.</p> 
+	<div>
+	
+		<input type="radio" name="12" value="a"> A. H = d sinθ(1 - gd/u<sup>2</sup>sin2&theta;) <br>
+		<input type="radio" name="12" value="b"> B. H = d cosθ(1 - gd/u<sup>2</sup>sin2&theta;)<br>
+		<input type="radio" name="12" value="c"> C. H = d tanθ(1 - gd/u<sup>2</sup>sin2&theta;) <br>
+		<input type="radio" name="12" value="d"> D. H = d cotθ(1 - gd/u<sup>2</sup>sin2&theta;) <br>
+    <input type="radio" name="12" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p13" class="container questions"> 
+  		<h3><strong>Paragraph type questions </strong><br>
+  		Paragraph 1 for
+  		    Question 12,13,14,15 :</h3> 
+  		<hr>
+  		<p> There is a situation that a volleyball match is going on. A boy is going to serve the ball to the
+opponent team by hitting the ball with a velocity V at a height h above the ground at an angle of θ.
+He is standing at a distance of d from the net(height H) and T is the time taken by the ball in the
+above situation.(H>h) <br>
+	   <h3>Question13 :</h3> 
+  		<hr>
+  		<p> The time taken by the ball to cross the net is. </p> 
+	<div>
+	
+		<input type="radio" name="13" value="a"> A. t=d/vcos&theta; <br>
+		<input type="radio" name="13" value="b"> B. t=2d/vcos&theta; <br>
+		<input type="radio" name="13" value="c"> C. t=d/2vcos&theta; <br>
+		<input type="radio" name="13" value="d"> D. t=d/vcot&theta; <br>
+    <input type="radio" name="13" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p14" class="container questions"> 
+  		<h3><strong>Paragraph type questions </strong><br>
+  		Paragraph 1 for
+  		    Question 12,13,14,15 :</h3> 
+  		<hr>
+  		<p> There is a situation that a volleyball match is going on. A boy is going to serve the ball to the
+opponent team by hitting the ball with a velocity V at a height h above the ground at an angle of θ.
+He is standing at a distance of d from the net(height H) and T is the time taken by the ball in the
+above situation.(H>h) <br>
+	     <h3>Question14 :</h3> 
+  		<hr>
+  		<p> A real has an efficiency of 33%. The engine has a work output of 24 J per cycle.<br>
+  		14) How much heat energy is discharged into the low-temperature reservior per cycle? </p> 
+	<div>
+	
+		<input type="radio" name="14" value="a"> A. 8J <br>
+		<input type="radio" name="14" value="b"> B. 16J <br>
+		<input type="radio" name="14" value="c"> C. 48J <br>
+		<input type="radio" name="14" value="d"> D. 72J <br>
+    <input type="radio" name="14" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p15" class="container questions"> 
+  		<h3><strong>Paragraph type questions </strong><br>
+  		Paragraph 1 for
+  		    Question 12,13,14,15 :</h3> 
+  		<hr>
+  		<p> There is a situation that a volleyball match is going on. A boy is going to serve the ball to the
+opponent team by hitting the ball with a velocity V at a height h above the ground at an angle of θ.
+He is standing at a distance of d from the net(height H) and T is the time taken by the ball in the
+above situation.(H>h) <br>
+	 <h3>Question15 :</h3> 
+  		<hr>
+  		<p> For this engine TL = 27ºC, What can be concluded about TH? </p> 
+	<div>
+	
+		<input type="radio" name="15" value="a"> A. TH = 450ºC <br>
+		<input type="radio" name="15" value="b"> B. TH = 177º<br>
+		<input type="radio" name="15" value="c"> C. 177ºC < TH < 450º<br>
+		<input type="radio" name="15" value="d"> D.  TH < 177ºC<br>
+    <input type="radio" name="15" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p16" class="container questions"> 
+  		<h3>Question16 :</h3> 
+  		<hr>
+  		<p>  </p> 
+	<div>
+	
+		<input type="radio" name="16" value="a"> A. Option A <br>
+		<input type="radio" name="16" value="b"> B. Option A <br>
+		<input type="radio" name="16" value="c"> C. Option A <br>
+		<input type="radio" name="16" value="d"> D. Option A <br>
+    <input type="radio" name="16" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p17" class="container questions"> 
+  		<h3>Question17 :</h3> 
+  		<hr>
+  		<p> Question to be placed </p> 
+	<div>
+	
+		<input type="radio" name="17" value="a"> A. Option A <br>
+		<input type="radio" name="17" value="b"> B. Option A <br>
+		<input type="radio" name="17" value="c"> C. Option A <br>
+		<input type="radio" name="17" value="d"> D. Option A <br>
+    <input type="radio" name="17" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p18" class="container questions"> 
+  		<h3>Question18 :</h3> 
+  		<hr>
+  		<p> Question to be placed </p> 
+	<div>
+	
+		<input type="radio" name="18" value="a"> A. Option A <br>
+		<input type="radio" name="18" value="b"> B. Option A <br>
+		<input type="radio" name="18" value="c"> C. Option A <br>
+		<input type="radio" name="18" value="d"> D. Option A <br>
+    <input type="radio" name="18" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p19" class="container questions"> 
+  		<h3>Question19 :</h3> 
+  		<hr>
+  		<p> Question to be placed </p> 
+	<div>
+	
+		<input type="radio" name="19" value="a"> A. Option A <br>
+		<input type="radio" name="19" value="b"> B. Option A <br>
+		<input type="radio" name="19" value="c"> C. Option A <br>
+		<input type="radio" name="19" value="d"> D. Option A <br>
+    <input type="radio" name="19" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p20" class="container questions"> 
+  		<h3>Question20 :</h3> 
+  		<hr>
+  		<p> Question to be placed </p> 
+	<div>
+	
+		<input type="radio" name="20" value="a"> A. Option A <br>
+		<input type="radio" name="20" value="b"> B. Option A <br>
+		<input type="radio" name="20" value="c"> C. Option A <br>
+		<input type="radio" name="20" value="d"> D. Option A <br>
+    <input type="radio" name="20" value="e" id="offsetter" checked="checked">
+
+		 
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+
+</div>
+
+
+  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+    <div id="m1" class="container questions">
+  		<h3>Question 1 :</h3> 
+  		<hr>
+  		<p> If f(x)= x<sup>2</sup> + x<sup>2</sup>/(1+x<sup>2</sup>) + x<sup>2</sup>/(1+x<sup>2</sup>)<sup>2</sup> + ..... + x<sup>2</sup>/(1+x<sup>2</sup>)<sup>n</sup> +..... then at x=0   </p> 
+	<div>
+		<input type="radio" name="21" value="a"> A.	f(x) has no limit   <br>
+		<input type="radio" name="21" value="b"> B.	f(x) is discontinuous   <br>
+		<input type="radio" name="21" value="c"> C.	f(x) is continuous but not differentiable   <br>
+		<input type="radio" name="21" value="d"> D.	f(x) is differentiable  <br>
+    <input type="radio" name="21" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m2" class="container questions"> 
+  		<h3>Question 2 :</h3> 
+  		<hr>
+  		<p> ABC is right angled whose vertices lie on y= ax<sup>2</sup>+bx+c. The hypotenuse AC=6*2<sup> 1/2 </sup>units. Then  
+              Y= <img src="Screenshot (173).png">
+ </p> 
+	<div>
+	
+		<input type="radio" name="22" value="a"> A. x<sup>2</sup>-18 <br>
+		<input type="radio" name="22" value="b"> B. x<sup>2</sup>-3*2<sup>1/2</sup>      <br>
+		<input type="radio" name="22" value="c"> C. x<sup>2</sup>/3- 2<sup>1/2</sup>     <br>
+		<input type="radio" name="22" value="d"> D.  x<sup>2</sup>/3*2<sup>1/2</sup> -3*2<sup>1/2</sup> <br>
+    <input type="radio" name="22" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+		
+	</div>
+  </div>
+  <div id="m3" class="container questions"> 
+  		<h3>Question3 :</h3> 
+  		<hr>
+  		<p> |z1|=1 |z2|=2 |z3|=3  and  |9z1z2 +4z1z3 +z2z3 | = 12 then find |z1 +z2 +z3|  </p> 
+	<div>
+		<input type="radio" name="23" value="a"> A. 2 <br>
+		<input type="radio" name="23" value="b"> B. 3 <br>
+		<input type="radio" name="23" value="c"> C. 4 <br>
+		<input type="radio" name="23" value="d"> D. 6 <br>
+    <input type="radio" name="23" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m4" class="container questions"> 
+  		<h3>Question4 :</h3> 
+  		<hr>
+  		<p> If  2a+3b+6c=0  then atleast one root of equation ax<sup>2</sup> + bx + c = 0  has atleast one root in   </p> 
+	<div>
+		<input type="radio" name="24" value="a"> A. [0,1]     <br>
+		<input type="radio" name="24" value="b"> B. [2,3]      <br>
+		<input type="radio" name="24" value="c"> C. [4,5]      <br>
+		<input type="radio" name="24" value="d"> D. none  <br>
+    <input type="radio" name="24" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m5" class="container questions"> 
+  		<h3>Question5 :</h3> 
+  		<hr>
+  		<p> The smaller of 99<sup>100</sup> + 100<sup>100</sup> and 101<sup>100</sup>, is  </p> 
+	<div>
+		<input type="radio" name="25" value="a"> A. 99<sup>100</sup> + 100<sup>100</sup> <br>
+		<input type="radio" name="25" value="b"> B. Both <br>
+		<input type="radio" name="25" value="c"> C. 101<sup>100</sup> <br>
+		<input type="radio" name="25" value="d"> D. None <br>
+    <input type="radio" name="25" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m6" class="container questions"> 
+  		<h3>Question6 :</h3> 
+  		<hr>
+  		<p> If f(x) and g(x) are differentiable functions in [0, 1] such that f (0) = 2, f (1)=6, g(0)=0 ,g(1)=2,  then there exists 0 < c < 1 such that  </p> 
+	<div>
+		<input type="radio" name="26" value="a"> A.	f’(c)=g’(c)  <br>
+		<input type="radio" name="26" value="b"> B.	- f’(c)=g’(c)    <br>
+		<input type="radio" name="26" value="c"> C.	f’(c)=2g’(c)  <br>
+		<input type="radio" name="26" value="d"> D.	2f’(c)=g’(c)  <br>
+    <input type="radio" name="26" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m7" class="container questions"> 
+  		<h3>Question7 :</h3> 
+  		<hr>
+  		<p> 7)	1+ sin x+ sin^2 x + sin^3 x+………. Is equal to 4+ 2(3^1/2).0< x <3.14,then x is equal to ____  </p> 
+	<div>
+		<input type="radio" name="27" value="a"> A. 30 <br>
+		<input type="radio" name="27" value="b"> B. 45 <br>
+		<input type="radio" name="27" value="c"> C. 60 or 30 <br>
+		<input type="radio" name="27" value="d"> D. 60 or 120 <br>
+    <input type="radio" name="27" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m8" class="container questions"> 
+  		<h3>Question8 :</h3> 
+  		<hr>
+  		<p>	Sum of infinite terms of the given series is 1/x. 
+               1/1.2.3.4 + 1/2.3.4.5 + 1/3.4.5.6  +  …………. 
+ Find sum of digits of x. 
+ </p> 
+	<div>
+		<input type="text" name="28" >  <br>
+		
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m9" class="container questions"> 
+  		<h3>Question9 :</h3> 
+  		<hr>
+  		<p>	If, for a positive integer n, quadratic equation, x(x+1)+(x+1)(x+2)+……..+(x+(n-1))(x+ n) has two consecutive integral solutions, then n is equal to______   </p> 
+  		<img src="phy9.png">
+	<div>
+		<input type="text" name="29" >  <br>
+		
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m10" class="container questions"> 
+  		<h3>Question10 :</h3> 
+  		<hr>
+  		<p> 10)	The coefficient x<sup>9</sup>  in the expansion of (1+x)(1+x<sup>2</sup> )(1+x<sup>3</sup> )………..(1+x<sup>100</sup> ) is______  </p> 
+	<div>
+		<input type="text" name="30" >  <br>
+	
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m11" class="container questions"> 
+  		<h3>Question11 :</h3> 
+  		<hr>
+  		<p> 11)	Suppose that all the terms of an arithmetic progression (A.P) are natural numbers. If the ratio of the sum of the first seven terms to the sum of the first eleven terms is 6:11 and the seventh term lies in between 130 and 140, then the common difference of this A.P  is__________  </p> 
+	<div>
+		<input type="text" name="31" > A <br>
+		
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m12" class="container questions"> 
+  		<h3><strong>Paragraph type questions </strong><br>
+  		Paragraph 1 for
+  		    Question 12,13 :</h3> 
+  		<hr>
+  		<p>Let L be the line belonging to the family of  the straight lines (a+2b)x+(a-3b)y+a-8b=0, and which is farthest from the point (2,2) </p> <br>
+	     <h3>Question12 :</h3> 
+  		<hr>
+  		<p>	The equation of the line L is  </p> 
+	<div>
+		<input type="radio" name="32" value="a"> A. x+4y+7=0   <br>
+		<input type="radio" name="32" value="b"> B. x+4y+7=0   <br>
+		<input type="radio" name="32" value="c"> C. 4x-y-6=0   <br>
+		<input type="radio" name="32" value="d"> D. none <br>
+    <input type="radio" name="32" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m13" class="container questions"> 
+  		<h3><strong>Paragraph type questions </strong><br>
+  		Paragraph 1 for
+  		    Question 12,13 :</h3> 
+  		<hr>
+  		<p>Let L be the line belonging to the family of  the straight lines (a+2b)x+(a-3b)y+a-8b=0, and which is farthest from the point (2,2) </p> <br>
+	     <h3>Question13 :</h3> 
+  		<hr>
+  		<p> 13.	If L is concurrent  with the lines x-2y+1=0 and 3x-4y+β=0,then the value of β =   </p> 
+	<div>
+		<input type="radio" name="33" value="a"> A. 2 <br>
+		<input type="radio" name="33" value="b"> B. 1 <br>
+		<input type="radio" name="33" value="c"> C. -4 <br>
+		<input type="radio" name="33" value="d"> D. 5 <br>
+    <input type="radio" name="33" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m14" class="container questions"> 
+  		<h3><strong>Paragraph type questions </strong><br>
+  		Paragraph 2 for
+  		    Question 14,15 :</h3> 
+  		<hr>
+  		<p>There are two infinite geometric progressions with sums S<sub>1</sub> and S<sub>2</sub>. Second term of both the GPs are equal. Third term of Ist GP is 1/8. If S<sub>1</sub>= S<sub>2</sub> =1 then answer the following  </p> <br>
+	     <h3>Question14 :</h3> 
+  		<hr>
+  		<p>	Sum of their common ratio is 
+ </p> 
+	<div>
+		<input type="radio" name="34" value="a"> A. 1/2 <br>
+		<input type="radio" name="34" value="b"> B. 1 <br>
+		<input type="radio" name="34" value="c"> C. 3/4<br>
+		<input type="radio" name="34" value="d"> D. 3/2 <br>
+    <input type="radio" name="34" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m15" class="container questions"> 
+  		<h3>Question15 :</h3> 
+  		<hr>
+  		<p> first term of second GP is  </p> 
+	<div>
+		<input type="radio" name="35" value="a"> A. 1/4 <br>
+		<input type="radio" name="35" value="b"> B. (3 +5<sup>1/2</sup>)/4  <br>
+		<input type="radio" name="35" value="c"> C. (3 - 5<sup>1/2</sup>)/4 <br>
+		<input type="radio" name="35" value="d"> D. (-3 +5<sup>1/2</sup>)/4 <br>
+    <input type="radio" name="35" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+
+
+
+		 
+ <div id="m16" class="container questions"> 
+  		<h3>Question16 :</h3> 
+  		<hr>
+  		<p> Question to be placed </p> 
+	<div>
+		<input type="radio" name="36" value="a"> A. Option A <br>
+		<input type="radio" name="36" value="b"> B. Option A <br>
+		<input type="radio" name="36" value="c"> C. Option A <br>
+		<input type="radio" name="36" value="d"> D. Option A <br>
+    <input type="radio" name="36" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m17" class="container questions"> 
+  		<h3>Question17 :</h3> 
+  		<hr>
+  		<p> Question to be placed </p> 
+	<div>
+		<input type="radio" name="37" value="a"> A. Option A <br>
+		<input type="radio" name="37" value="b"> B. Option A <br>
+		<input type="radio" name="37" value="c"> C. Option A <br>
+		<input type="radio" name="37" value="d"> D. Option A <br>
+    <input type="radio" name="37" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m18" class="container questions"> 
+  		<h3>Question18 :</h3> 
+  		<hr>
+  		<p> Question to be placed </p> 
+	<div>
+		<input type="radio" name="38" value="a"> A. Option A <br>
+		<input type="radio" name="38" value="b"> B. Option A <br>
+		<input type="radio" name="38" value="c"> C. Option A <br>
+		<input type="radio" name="38" value="d"> D. Option A <br>
+    <input type="radio" name="38" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m19" class="container questions"> 
+  		<h3>Question19 :</h3> 
+  		<hr>
+  		<p> Question to be placed </p> 
+	<div>
+		<input type="radio" name="39" value="a"> A. Option A <br>
+		<input type="radio" name="39" value="b"> B. Option A <br>
+		<input type="radio" name="39" value="c"> C. Option A <br>
+		<input type="radio" name="39" value="d"> D. Option A <br>
+    <input type="radio" name="39" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m20" class="container questions"> 
+  		<h3>Question20 :</h3> 
+  		<hr>
+  		<p> Question to be placed </p> 
+	<div>
+		<input type="radio" name="40" value="a"> A. Option A <br>
+		<input type="radio" name="40" value="b"> B. Option A <br>
+		<input type="radio" name="40" value="c"> C. Option A <br>
+		<input type="radio" name="40" value="d"> D. Option A <br>
+    <input type="radio" name="40" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  </div>
+  <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+       <div id="c1" class="container questions"> 
+  		<h3>Question1 :</h3> 
+  		<hr>
+  		<p> .Statement-1: in water, orthoboric acid behaves as a weak monobasic acid because<br>
+Statement-2: in water, orthoboric acid acts as a proton donor.. </p> 
+	<div>
+		<input type="radio" name="41" value="a"> A. Statement 1 true and statement 2 correct explanation of 1. <br>
+		<input type="radio" name="41" value="b"> B. Statement 1 is true and statement 2 is not the correct explanation of statement 1. <br>
+		<input type="radio" name="41" value="c"> C. Statement 1 is true, statement 2 is false  <br>
+		<input type="radio" name="41" value="d"> D. Statement 1 is false and statement 2 is true <br>
+    <input type="radio" name="41" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  	  <div id="c2" class="container questions"> 
+  		<h3>Question2 :</h3> 
+  		<hr>
+  		<p> A 1-kg block of ice at 0ºC is placed into a perfectly insulated, sealed container that has 2 kg of
+water also at 0ºC. The water and ice completely fill the container, but the container is flexible. After
+some time one can except that </p> 
+	<div>
+		<input type="radio" name="42" value="a"> A.  the water will freeze so that the mass of the ice will increase <br>
+		<input type="radio" name="42" value="b"> B.  the ice will melt so that the mass of the ice will decrease. <br>
+		<input type="radio" name="42" value="c"> C.  both the amount of water and the amount of ice will remain constant <br>
+		<input type="radio" name="42" value="d"> D.  both the amount of water and the amount of ice will decrease. <br>
+    <input type="radio" name="42" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  	 <div id="c3" class="container questions"> 
+  		<h3>Question3 :</h3> 
+  		<hr>
+  		<p>  Among the following the least stable resonance structure is </p> 
+	<div>
+		<img src="chem3.png">
+		<input type="radio" name="43" value="a"> A. Option A <br>
+		<input type="radio" name="43" value="b"> B. Option B <br>
+		<input type="radio" name="43" value="c"> C. Option C <br>
+		<input type="radio" name="43" value="d"> D. Option D <br>
+    <input type="radio" name="43" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div> 
+	<img src="chem3.png" alt="Figure for question 3" width="400" height="200">
+  </div>
+  <div id="c4" class="container questions"> 
+  		<h3>Question4 :</h3> 
+  		<hr>
+  		<p>  The major product of the following reaction is </p> 
+	<div><img src="chem4.png">
+		<input type="radio" name="44" value="a"> A. Option A <br>
+		<input type="radio" name="44" value="b"> B. Option A <br>
+		<input type="radio" name="44" value="c"> C. Option A <br>
+		<input type="radio" name="44" value="d"> D. Option A <br>
+    <input type="radio" name="44" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+	<img src="chem4.png" alt="Figure for question 4" width="400" height="300">
+  </div>
+  <div id="c5" class="container questions"> 
+  		<h3>Question5 :</h3> 
+  		<hr>
+  		<p> .Which of the following statements(s) is/are false? </p> 
+	<div>
+		<input type="radio" name="45" value="a"> A. Oxidation of glucose with bromine water gives Glutamic Acid <br>
+		<input type="radio" name="45" value="b"> B. The two six-membered cyclic hemiacetal forms of D- (+)-glucose are called Anomers. <br>
+		<input type="radio" name="45" value="c"> C. Monosaccharides can’t be hydrolyzed to give polyhydroxy aldehydes and ketones. <br>
+		<input type="radio" name="45" value="d"> D. Hydrolysis of sucrose gives dextrorotatory glucose and levorotatory fructose. <br>
+    <input type="radio" name="45" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="c6" class="container questions"> 
+  		<h3>Question6 :</h3> 
+  		<hr>
+  		<p> In the reaction
+ P + Q —> R + S<br>The time taken for 75% reaction of P is twice the time taken for 50% of P. The concentration of Q
+varies with reaction time as shown in the figure below. The overall order of the reaction is ? </p> 
+	<div><img src="chem6.png">
+		<input type="radio" name="46" value="a"> A. 0 <br>
+		<input type="radio" name="46" value="b"> B. 1 <br>
+		<input type="radio" name="46" value="c"> C. 2 <br>
+		<input type="radio" name="46" value="d"> D. 3 <br>
+    <input type="radio" name="46" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+	<img src="chem6.png" alt="Figure for question 6" width="200" height="200">
+  </div>
+  <div id="c7" class="container questions"> 
+  		<h3>Question7 :</h3> 
+  		<hr>
+  		<p> What is the complete IUPAC name of the following substance? </p> 
+	<div><img src="chem7.png">
+		<input type="radio" name="47" value="a"> A. (1S,3S)-1-methylcyclopentane-1,3-diol <br>
+		<input type="radio" name="47" value="b"> B. (1R,3R)-1-methylcyclopentane-1,3-diol <br>
+		<input type="radio" name="47" value="c"> C. (1S,3R)-1-methylcyclopentane-1,3-diol <br>
+		<input type="radio" name="47" value="d"> D. (1R,3S)-1-methylcyclopentane-1,3-diol <br>
+    <input type="radio" name="47" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+	<img src="chem7.png" alt="Figure for question 7" width="200" height="200">
+  </div>
+  <div id="c8" class="container questions"> 
+  		<h3><strong>Integer type questions </strong><br>Question8 :</h3> 
+  		<hr>
+  		<p>  No. Of stereoisomers of CH3(OH)CH-CH=CH-CH(OH)CH3 </p> 
+	<div>
+		<input type="text" name="48" >  <br>
+		
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="c9" class="container questions"> 
+  		<h3>Question9 :</h3> 
+  		<hr>
+  		<p>  Difference in oxidation number of two types of sulphur atoms in Na2S4O6 </p> 
+	<div>
+		<input type="text" name="49" >  <br>
+		
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="c10" class="container questions"> 
+  		<h3>Question10 :</h3> 
+  		<hr>
+  		<p>  The total number of contributing structures showing hyper conjugation (involving C-H bonds) for
+the following carbocation is </p> 
+	<div><img src="chem10.png">
+		<input type="text" name="50" > <br>
+		
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+	<img src="chem10.png" alt="Figure for question 10" width="200" height="200">
+  </div>'
+  <div id="c11" class="container questions"> 
+  		<h3>Question11 :</h3> 
+  		<hr>
+  		<p> The maximum number of electrons that can have principal quantum number, n=3 and spin
+quantum number m = -1/2 </p> 
+	<div>
+		<input type="text" name="51" >  <br>
+		
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="c12" class="container questions"> 
+  		<h3><strong>Paragraph type questions </strong><br>
+  		Paragraph 1 for
+  		    Question 12,13 :</h3>
+  		<hr>  <img src="chem12.png" alt="Figure for question 12" width="400" height="250">
+  <img src="chem12-2.png" alt="Figure for question 12" width="300" height="250" margin-left="200px">
+  		<p>  The structure of the compound P is</p> 
+	<div>
+		<input type="radio" name="52" value="a"> A. Option A <br>
+		<input type="radio" name="52" value="b"> B. Option B <br>
+		<input type="radio" name="52" value="c"> C. Option C <br>
+		<input type="radio" name="52" value="d"> D. Option D <br>
+    <input type="radio" name="52" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+
+  </div>
+  <div id="c13" class="container questions"> 
+  		<h3><strong>Paragraph type questions </strong><br>
+  		Paragraph 1 for
+  		    Question 12,13 :</h3>
+  		      <hr>  <img src="chem12.png" alt="Figure for question 12" width="400" height="250">
+<h3>Question13 :</h3> 
+  		<hr>
+  		<p>  The structure of the compound Q is </p> 
+	<div><img src="chem13.png"><br>
+		<input type="radio" name="53" value="a"> A. Option A <br>
+		<input type="radio" name="53" value="b"> B. Option B <br>
+		<input type="radio" name="53" value="c"> C. Option C <br>
+		<input type="radio" name="53" value="d"> D. Option D <br>
+    <input type="radio" name="53" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+
+  </div>
+  <div id="c14" class="container questions"> 
+  		<h3>Question14 :</h3> 
+  		<hr>
+  		<p> Upon heating KClO3 in the presence of catalytic amount of MnO2,a gas W is formed.Excess amount
+of W reacts with white phosphorus to give X. The reaction of X with pure HNO3 gives Y and Z.<br>
+ ‘W’ and ‘X’ are, respectively</p> 
+	<div>
+		<input type="radio" name="54" value="a"> A. O<sub>3</sub> and P<sub>4</sub>O<sub>6</sub> <br>
+		<input type="radio" name="54" value="b"> B. O<sub>2</sub> and P<sub>4</sub>O<sub>6</sub> <br>
+		<input type="radio" name="54" value="c"> C. O<sub>2</sub> and P<sub>4</sub>O<sub>10</sub><br>
+		<input type="radio" name="54" value="d"> D. O<sub>3</sub> and P<sub>4</sub>O<sub>10</sub> <br>
+    <input type="radio" name="54" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="c15" class="container questions"> 
+  		<h3>Question15 :</h3> 
+  		<hr>
+  		<p>  ‘Y’ and ‘Z’ are, respectively </p> 
+	<div>
+		<input type="radio" name="55" value="a"> A. N<sub>2</sub>O<sub>3</sub> and H<sub>3</sub>PO<sub>4</sub><br>
+		<input type="radio" name="55" value="b"> B. N<sub>2</sub>O<sub>5</sub> and H<sub></sub>PO<sub>3</sub> <br>
+		<input type="radio" name="55" value="c"> C. N<sub>2</sub>O<sub>4</sub> and H<sub>3</sub>PO<sub>3</sub><br>
+		<input type="radio" name="55" value="d"> D. N<sub>2</sub>O<sub>4</sub> and H<sub></sub>PO<sub>3</sub> <br>
+    <input type="radio" name="55" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+  <div id="c16" class="container questions"> 
+  		<h3>Question16 :</h3> 
+  		<hr>
+  		<p> Question to be placed </p> 
+	<div>
+		<input type="radio" name="56" value="a"> A. Option A <br>
+		<input type="radio" name="56" value="b"> B. Option A <br>
+		<input type="radio" name="56" value="c"> C. Option A <br>
+		<input type="radio" name="56" value="d"> D. Option A <br>
+    <input type="radio" name="56" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="c17" class="container questions"> 
+  		<h3>Question17 :</h3> 
+  		<hr>
+  		<p> Question to be placed </p> 
+	<div>
+		<input type="radio" name="57" value="a"> A. Option A <br>
+		<input type="radio" name="57" value="b"> B. Option A <br>
+		<input type="radio" name="57" value="c"> C. Option A <br>
+		<input type="radio" name="57" value="d"> D. Option A <br>
+    <input type="radio" name="57" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="c18" class="container questions"> 
+  		<h3>Question18 :</h3> 
+  		<hr>
+  		<p> Question to be placed </p> 
+	<div>
+		<input type="radio" name="58" value="a"> A. Option A <br>
+		<input type="radio" name="58" value="b"> B. Option A <br>
+		<input type="radio" name="58" value="c"> C. Option A <br>
+		<input type="radio" name="58" value="d"> D. Option A <br>
+    <input type="radio" name="58" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="c19" class="container questions"> 
+  		<h3>Question19 :</h3> 
+  		<hr>
+  		<p> Question to be placed </p> 
+	<div>
+		<input type="radio" name="59" value="a"> A. Option A <br>
+		<input type="radio" name="59" value="b"> B. Option A <br>
+		<input type="radio" name="59" value="c"> C. Option A <br>
+		<input type="radio" name="59" value="d"> D. Option A <br>
+    <input type="radio" name="59" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="c20" class="container questions"> 
+  		<h3>Question20 :</h3> 
+  		<hr>
+  		<p> Question to be placed </p> 
+	<div>
+		<input type="radio" name="60" value="a"> A. Option A <br>
+		<input type="radio" name="60" value="b"> B. Option A <br>
+		<input type="radio" name="60" value="c"> C. Option A <br>
+		<input type="radio" name="60" value="d"> D. Option A <br>
+    <input type="radio" name="60" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  </div>
+ </div>
+</div>
+<hr>
+<button type="submit" class="btn btn-danger endtest"  >End Test</button>
+</div>
+ <!-- Question Display -->
+  <!-- Content Area -->
+</form>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+ 
+      secs=100;
+
+    timer=setInterval(function(){
+      var element =document.getElementById("timer");
+      element.innerHTML="you have "+secs+"to ans";
+      if(secs<1){
+        clearInterval(timer);
+        document.getElementById('questions').submit();
+        alert("Thanks for writing the exam");
+      }
+      secs--;
+    },1000)
+
+
+  function pbutton(){
+    document.getElementById("mbuttons").style.display = "none";
+    document.getElementById("pbuttons").style.display = "grid";
+    document.getElementById("cbuttons").style.display = "none";
+    
+
+
+  }
+  function mbutton(){
+    document.getElementById("mbuttons").style.display = "grid";
+    document.getElementById("pbuttons").style.display = "none";
+    document.getElementById("cbuttons").style.display = "none";
+    
+
+  }
+  function cbutton(){
+    document.getElementById("mbuttons").style.display = "none";
+    document.getElementById("pbuttons").style.display = "none";
+    document.getElementById("cbuttons").style.display = "grid";
+    
+  }
+  function ibutton(){
+    document.getElementById("mbuttons").style.display = "none";
+    document.getElementById("pbuttons").style.display = "none";
+    document.getElementById("cbuttons").style.display = "none";
+    document.getElementById("instruct").style.display = "block";
+    
+  }
+
+  function phyfun(id)
+  {
+    for(var i = 1 ; i<=20 ; i++)
+    {   
+      if(i == id)
+        continue ;
+
+      else
+      {
+      var xid = 'p'.concat(i);
+      var state = document.getElementById(xid).style.display;
+      if(state == 'block')
+      {
+        document.getElementById(xid).style.display = "none";
+      }
+      }
+    }
+    var phy = 'p'.concat(id);
+    document.getElementById(phy).style.display = "block";
+    document.getElementById(id).style.color = "orange";
+    
+  }
+function matfun(id)
+  {
+    for(var i = 21 ; i<=40 ; i++)
+    {   
+      if(i == id)
+        continue ;
+
+      else
+      {
+      var xid = 'm'.concat(i-20);
+      var state = document.getElementById(xid).style.display;
+      if(state == 'block')
+      {
+        document.getElementById(xid).style.display = "none";
+      }
+      }
+    }
+    var phy = 'm'.concat(id-20);
+    document.getElementById(phy).style.display = "block";
+    document.getElementById(id).style.color = "orange";
+    
+  }
+  function chfun(id)
+  {
+    for(var i = 41 ; i<=60 ; i++)
+    {   
+      if(i == id)
+        continue ;
+
+      else
+      {
+      var xid = 'c'.concat(i-40);
+      var state = document.getElementById(xid).style.display;
+      if(state == 'block')
+      {
+        document.getElementById(xid).style.display = "none";
+      }
+      }
+    }
+    var phy = 'c'.concat(id-40);
+    document.getElementById(phy).style.display = "block";
+    document.getElementById(id).style.color = "orange";
+    
+  }
+  
+
+  
+  </script>
+</body>
+</html>

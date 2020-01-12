@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Q-Wissenaire</title>
+	
+	<!-- Links -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	
+    <!-- Links -->
+	
+
+
+	<style type="text/css">
+		*{
+			box-sizing: border-box;
+		}
+		.main{
+			 position: relative;
+			  top:80px; 
+			  left :32.5vw;
+			  bottom:   50px;
+			  right: 32.5vw;
+			  width: 35vw;
+			  height: 500px;
+			  text-align:center;
+			  box-shadow: 2px 2px 8px rgba(0,0,0,1) ;
+			  border-radius: 6px;
+			  background-color: rgba(0,0,0,0.09);
+		}
+		div.sub{
+
+			position: absolute;
+			top: 40px;
+			left: 20px;
+			right: 20px;
+			bottom: 20px;
+			background-color: white;
+			border-radius: 4px;			
+		}
+		.cross{
+			position: absolute;
+			right: 20px;
+			top: 8px;
+			font-size: 20px;
+			color: rgba(0,0,0,0.3);
+		}
+		.cross:hover {
+			color: rgb(0,0,0);
+		}
+		div.sub2{
+			position: absolute;
+			top: 7px;
+			bottom :7px;
+			right: 7px;
+			left:7px;
+		}
+		
+	</style>
+</head>
+<body>
+	
+	<!-- Login,Signup popup -->
+     <div class="main">
+     	<i class="fas fa-times cross " ></i>
+     	<div class="sub">
+     	  <div class="sub2" >
+     	  
+     <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" style="background-color: rgba(0,0,0,0.15);">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Log In</a>
+  </li>
+  <li class="nav-item" style="background-color: rgba(0,0,0,0.15);">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Sign Up</a>
+  </li>
+  
+</ul>
+<div class="tab-content" id="myTabContent" style="margin: 20px 20px">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="login-tab">
+  	<form name="login" action="login.php" method="POST" >
+        <div class=form-group>
+        
+        <input type="text" name="username" class="form-control" placeholder="Username"  required>
+        </div>
+       
+        <div class="form-group">
+            
+            <input type="password" name="pwd"  class="form-control" placeholder="Password" required>
+        </div>
+        
+        
+       
+            
+        <button type="submit" class="btn btn-primary" onclick="wait()">Submit</button>
+    </form>
+ 
+  </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="sigup-tab">
+  	
+  	
+  	
+    
+       
+    <form name="register" action="register.php" method="POST" onsubmit="validateForm()">
+        <div class=form-group>
+        
+        <input type="text" name="username" class="form-control" placeholder="Your Name" required>
+        </div>
+       
+        <div class="form-group">
+            
+            <input type="text" name="school"  class="form-control" placeholder="Your School Name" required>
+        </div>
+        <div class="form-group">
+                        <input type="text" name="num"  class="form-control" placeholder="Your Mobile Number">
+        </div>
+        
+       <div class="form-group">
+            
+            <input type="email" name="email" class="form-control" placeholder="E-Mail" >
+            </div>
+          <div class="form-group">
+            <label>Class</label>
+         <select name="class">
+             <option value=06>6</option>
+             <option value=07>7</option>
+             <option value=08>8</option>
+             <option value=09>9</option>
+             <option value=10>10</option>
+             <option value=11>11</option>
+             <option value=12>12</option>
+         </select>
+        </div>         
+         <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+     </div>
+ </div>
+</div>
+	<!-- Login,Signup popup -->
+
+  
+  	
+<script>
+function validateForm() {
+    var x = document.forms["register"]["email"].value;
+    var y=document.forms["register"]["num"].value;
+    if (x == ""&& y=="") {
+      alert("enter either your mail or number");
+      return false;
+    }
+  }
+   
+  </script>
+
+</body>
+</html>

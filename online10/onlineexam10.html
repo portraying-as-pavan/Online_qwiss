@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Online Exam</title>
+
+	<!-- Links -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	
+    <!-- Links -->
+
+    <style type="text/css">
+    	hr{
+    		color: solidblack;
+    	}
+
+    /*	div .menu{
+    		border-right: 1px  solid black;
+
+
+    		 
+    	}*/
+    	.timer{
+    		height: 50px;
+    		background-color: grey;
+    		
+    	}
+    	.header{
+    		height: 50px;
+    		background-color: rgb(212,202,74);
+
+    	}
+    	.username{
+    		height: 50px;
+    		background-color: rgb(68,135,88);
+
+    	}
+    	.questionstab{
+    		
+    		height: 600px;
+          box-shadow: 5px 5px;
+    	}
+    	div .questionstab{
+    		border : 1px solid black;
+    		border-radius: 6px;
+    	}
+    	.qnav{
+    		
+    	}
+    	.endtest{
+    		position: relative;
+    		left: 75vw;
+    	}
+    	 
+    	
+    	#pbuttons{
+    		display: grid;
+			grid-template-columns: repeat(4,1fr);
+            border: 1px solid blue;
+            border-radius: 4px;
+    	}
+    	#pbuttons div{
+    		margin-left: 5px;
+    		margin-bottom: 5px;
+    	}
+    	#cbuttons{
+    		
+    		display: none;
+    		grid-template-columns: repeat(4,1fr);
+            border: 1px solid blue;
+             border-radius: 4px;
+    	}
+    	#cbuttons div{
+    		margin-left: 5px;
+    		margin-bottom: 5px;
+
+    	}
+    	#mbuttons{
+    		
+    		display: none;
+    		grid-template-columns: repeat(4,1fr);
+            border: 1px solid blue;
+            border-radius: 4px;
+    	}
+    	#mbuttons div{
+    		margin-left: 5px;
+    		margin-bottom: 5px;
+
+
+    	}
+    	.questions{
+    		display: none;
+    	}
+
+
+    	#offsetter{
+        display: none;
+      }
+        
+ </style>
+      
+      
+    
+</head>
+<body>
+<div class="poppup">
+	<div class="row">
+	
+  
+   <!-- Menu -->
+<div class="col-md-2 menu">
+	
+	<div class="timer" id="timer">
+		<h4>Timer </h4>
+	</div>
+	<hr >
+	<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    
+  <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false" onclick="pbutton()">Mental ability</a>
+  <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false" onclick="mbutton()">Mathematics</a>
+ 	
+  </div>
+ 	<hr>
+  <!------------instructions--------->
+  
+
+ 	<!-- For buttons -->
+ <div id="pbuttons">
+ <div><button type="button" id="1"  onclick="phyfun(1)">01</button></div>
+ <div><button type="button" id="2"  onclick="phyfun(2)">02</button></div>
+ <div><button type="button" id="3"  onclick="phyfun(3)">03</button></div>
+ <div><button type="button" id="4"  onclick="phyfun(4)">04</button></div> 
+ <div><button type="button" id="5"  onclick="phyfun(5)">05</button></div>
+ <div><button type="button" id="6"  onclick="phyfun(6)">06</button></div>
+ <div><button type="button" id="7"  onclick="phyfun(7)">07</button></div>
+ <div><button type="button" id="8"  onclick="phyfun(8)">08</button></div>
+ <div><button type="button" id="9"  onclick="phyfun(9)">09</button></div>
+ <div><button type="button" id="10" onclick="phyfun(10)">10</button></div>
+ <div><button type="button" id="11" onclick="phyfun(11)">11</button></div>
+ <div><button type="button" id="12" onclick="phyfun(12)">12</button></div> 
+ <div><button type="button" id="13" onclick="phyfun(13)">13</button></div>
+ <div><button type="button" id="14" onclick="phyfun(14)">14</button></div>
+ <div><button type="button" id="15" onclick="phyfun(15)">15</button></div>
+ <div><button type="button" id="16" onclick="phyfun(16)">16</button></div>
+ <div><button type="button" id="17" onclick="phyfun(17)">17</button></div>
+ <div><button type="button" id="18" onclick="phyfun(18)">18</button></div>
+ <div><button type="button" id="19" onclick="phyfun(19)">19</button></div>
+ <div><button type="button" id="20" onclick="phyfun(20)">20</button></div>
+</div>
+
+<div id="mbuttons">
+ <div><button type="button" id="21"  onclick="matfun(21)">21</button></div>
+ <div><button type="button" id="22"  onclick="matfun(22)">22</button></div>
+ <div><button type="button" id="23"  onclick="matfun(23)">23</button></div>
+ <div><button type="button" id="24"  onclick="matfun(24)">24</button></div> 
+ <div><button type="button" id="25"  onclick="matfun(25)">25</button></div>
+ <div><button type="button" id="26"  onclick="matfun(26)">26</button></div>
+ <div><button type="button" id="27"  onclick="matfun(27)">27</button></div>
+ <div><button type="button" id="28"  onclick="matfun(28)">28</button></div>
+ <div><button type="button" id="29"  onclick="matfun(29)">29</button></div>
+ <div><button type="button" id="30"  onclick="matfun(30)">30</button></div>
+ <div><button type="button" id="31"  onclick="matfun(31)">31</button></div>
+ <div><button type="button" id="32"  onclick="matfun(32)">32</button></div> 
+ <div><button type="button" id="33"  onclick="matfun(33)">33</button></div>
+ <div><button type="button" id="34"  onclick="matfun(34)">34</button></div>
+ <div><button type="button" id="35"  onclick="matfun(35)">35</button></div>
+ <div><button type="button" id="36"  onclick="matfun(36)">36</button></div>
+ <div><button type="button" id="37"  onclick="matfun(37)">37</button></div>
+ <div><button type="button" id="38"  onclick="matfun(38)">38</button></div>
+ <div><button type="button" id="39"  onclick="matfun(39)">39</button></div>
+ <div><button type="button" id="40"  onclick="matfun(40)">40</button></div>
+</div>
+<!-- For buttons -->
+
+	</div>
+
+	<!-- Menu -->
+
+
+   <!-- Content Area -->
+  
+	<div class="col-md-10">
+		 
+<!-- Header Section -->
+		 <div class="row ">
+		 	<div class="col-md-9 header">
+		 		<h2>Q-Wissenaire </h2>
+		 	</div>
+		 	<div class="col-md-3 username">
+		 		<h4> Xth Class </h4>
+		 	</div>
+   		 </div>
+   <hr >
+  <!-- Header Section -->
+  
+  <!-- Question Display -->
+  <div class="questionstab">
+<div class="tab-content qnav" id="v-pills-tabContent">
+<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" >
+  <form id="questions" action="ans10.php" method="POST">
+  	<div id="p1" class="container questions"> 
+  		<h3>Question 1 :</h3> 
+  		<hr>
+  		<p> Find the equation to the perpendicular bisector of the line segment joining the points (7,1) and (3,-3).   </p> 
+	<div>
+		<input type="radio" name="1" value="a"> A. x-y=4  <br>
+		<input type="radio" name="1" value="b"> B. x+2y=4  <br>
+		<input type="radio" name="1" value="c"> C. x+y=4 <br>
+		<input type="radio" name="1" value="d"> D. x-2y=44  <br>
+    <input type="radio" name="1" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p2" class="container questions"> 
+  		<h3>Question 2 :</h3> 
+  		<hr>
+  		<p>  In trapezium ABCD, AB//CD and AB=2CD. O is the point of intersection of AC and DB. find the ratio of areas of ⃤ AOB and ⃤ COD. </p> 
+	<div>
+	
+		<input type="radio" name="2" value="a"> A. 1:4 <br>
+		<input type="radio" name="2" value="b"> B. 1:2 <br>
+		<input type="radio" name="2" value="c"> C. 4:1 <br>
+		<input type="radio" name="2" value="d"> D. 2:1 <br>
+    <input type="radio" name="2" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+		
+	</div>
+  </div>
+  <div id="p3" class="container questions"> 
+  		<h3>Question3 :</h3> 
+  		<hr>
+  		<p> The number of numbers greater than a million that can be formed with the digits 2,3,0,3,4,2 and 3 are </p> 
+	<div>
+		<input type="radio" name="3" value="a"> A. 360 <br>
+		<input type="radio" name="3" value="b"> B. 340 <br>
+		<input type="radio" name="3" value="c"> C. 370 <br>
+		<input type="radio" name="3" value="d"> D. 350 <br>
+    <input type="radio" name="3" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p4" class="container questions"> 
+  		<h3>Question4 :</h3> 
+  		<hr>
+  		<p> If the sum of ‘n’ terms of two arithmetic series are in the ratio 7n+1 : 4n+27 . The ratio of their 11th terms is  </p> 
+	<div>
+		<input type="radio" name="4" value="a"> A. 4/3 <br>
+		<input type="radio" name="4" value="b"> B. ⅔   <br>
+		<input type="radio" name="4" value="c"> C. 7/3 <br>
+		<input type="radio" name="4" value="d"> D. ⅘   <br>
+    <input type="radio" name="4" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p5" class="container questions"> 
+  		<h3>Question5 :</h3> 
+  		<hr>
+  		<p> The value of the expression 3(sinx-cosx)4+6(sinx+cosx)2+4(sin6x+cos6x) is  </p> 
+	<div>
+		<input type="radio" name="5" value="a"> A. 12 <br>
+		<input type="radio" name="5" value="b"> B. 14 <br>
+		<input type="radio" name="5" value="c"> C. 18 <br>
+		<input type="radio" name="5" value="d"> D. 13 <br>
+    <input type="radio" name="5" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p6" class="container questions"> 
+  		<h3>Question6 :</h3> 
+  		<hr>
+  		<p> In a triangle ABC, a=6, b=3, cos(A-B) = (4/5). Find the area</p> 
+	<div>
+		<input type="radio" name="6" value="a"> A. 41/5   <br>
+		<input type="radio" name="6" value="b"> B. 36/5   <br>
+		<input type="radio" name="6" value="c"> C. 29/5   <br>
+		<input type="radio" name="6" value="d"> D. 24/5   <br>
+    <input type="radio" name="6" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p7" class="container questions"> 
+  		<h3>Question7 :</h3> 
+  		<hr>
+  		<p>  A group of 30 men participate in a survey on language skills. The number of men who know both English and Hindi are equal to number of men who know neither of these languages. The number of men who know English is 4 more than who know Hindi. How many know Hindi?  </p> 
+	<div>
+		<input type="radio" name="7" value="a"> A. 14 <br>
+		<input type="radio" name="7" value="b"> B. 10 <br>
+		<input type="radio" name="7" value="c"> C. 9  <br>
+		<input type="radio" name="7" value="d"> D. 13 <br>
+    <input type="radio" name="7" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p8" class="container questions"> 
+  		<h3>Question8 :</h3> 
+  		<hr>
+  		<p>  The relation R:N->N defined by R:{y=x2+1} is </p> 
+	<div>
+		<input type="radio" name="8" value="a"> A. Many to many <br>
+		<input type="radio" name="8" value="b"> B. One to many  <br>
+		<input type="radio" name="8" value="c"> C. Many to one <br>
+		<input type="radio" name="8" value="d"> D. One to one  <br>
+    <input type="radio" name="8" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p9" class="container questions"> 
+  		<h3>Question9 :</h3> 
+  		<hr>
+  		<p> Let f be a function satisfying of x. Then f(xy)= f(x)/y  for all positive real numbers x and y. If f(20)=20, then find the value of f(40).      </p> 
+	<div>
+		<input type="radio" name="9" value="a"> A. 15 <br>
+		<input type="radio" name="9" value="b"> B. 10 <br>
+		<input type="radio" name="9" value="c"> C. 20 <br>
+		<input type="radio" name="9" value="d"> D. 30 <br>
+    <input type="radio" name="9" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p10" class="container questions"> 
+  		<h3>Question10 :</h3> 
+  		<hr>
+  		<p> Nine cards bearing numbers 2,3,4,5,6,7,8,9,10 are shuffled. Find in how many cases the second card from the top will be a multiple of first card from the top? </p> 
+	<div>
+		<input type="radio" name="10" value="a"> A. 45690  <br>
+		<input type="radio" name="10" value="b"> B. 40320 <br>
+		<input type="radio" name="10" value="c"> C. 32400 <br>
+		<input type="radio" name="10" value="d"> D. 43200  <br>
+    <input type="radio" name="10" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p11" class="container questions"> 
+  		<h3>Question11 :</h3> 
+  		<hr>
+  		<p>)a, b real numbers. The least value of a2 + ab + b2 – a – 2b is </p> 
+	<div>
+		<input type="radio" name="11" value="a"> A. 1 <br>
+		<input type="radio" name="11" value="b"> B. 0 <br>
+		<input type="radio" name="11" value="c"> C. -1 <br>
+		<input type="radio" name="11" value="d"> D. 2 <br>
+    <input type="radio" name="11" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p12" class="container questions"> 
+  		<h3>Question12 :</h3> 
+  		<hr>
+  		<p>  There are four bells. They ring after every one minute, two and half minutes, 30 seconds and 5 seconds respectively. If all the four bells rang last time together at 5:02 p.m., then at what time will they all next ring simultaneously?  </p> 
+	<div>
+		<input type="radio" name="12" value="a"> A. 5:04am  <br>
+		<input type="radio" name="12" value="b"> B. 5:05am  <br>
+		<input type="radio" name="12" value="c"> C. 5:06pm  <br>
+		<input type="radio" name="12" value="d"> D. 5:04pm  <br>
+    <input type="radio" name="12" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p13" class="container questions"> 
+  		<h3>Question13 :</h3> 
+  		<hr>
+  		<p> Three numbers are in the ratio 2 : 3 : 4. The sum of their cubes is 33957. Find the largest number.  </p> 
+	<div>
+		<input type="radio" name="13" value="a"> A. 28 <br>
+		<input type="radio" name="13" value="b"> B. 21 <br>
+		<input type="radio" name="13" value="c"> C. 32 <br>
+		<input type="radio" name="13" value="d"> D. 14 <br>
+    <input type="radio" name="13" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p14" class="container questions"> 
+  		<h3>Question14 :</h3> 
+  		<hr>
+  		<p>  6, 14, 36, 98, ? </p> 
+	<div>
+		<input type="radio" name="14" value="a"> A. 276 <br>
+		<input type="radio" name="14" value="b"> B. 275  <br>
+		<input type="radio" name="14" value="c"> C. 220 <br>
+		<input type="radio" name="14" value="d"> D. 274 <br>
+    <input type="radio" name="14" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p15" class="container questions"> 
+  		<h3>Question15 :</h3> 
+  		<hr>
+  		<p>  A metallic sphere of radius 3 cm is melted and recast into some spherical balls of radius 0.6 cm. The number of balls that can be made out of it is:  </p> 
+	<div>
+		<input type="radio" name="15" value="a"> A. 90 <br>
+		<input type="radio" name="15" value="b"> B. 95 <br>
+		<input type="radio" name="15" value="c"> C. 100 <br>
+		<input type="radio" name="15" value="d"> D. 125<br>
+    <input type="radio" name="15" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p16" class="container questions"> 
+  		<h3>Question16 :</h3> 
+  		<hr>
+  		<p>  Jack’s monthly salary is Rs 78,000. He spends 20% on fooding and 10% on house rent. From the remaining, he spends 30% on his only son’s education and donates 10% of the rest to charity. His monthly savings is:  </p> 
+	<div>
+		<input type="radio" name="16" value="a"> A. Rs 35498 <br>
+		<input type="radio" name="16" value="b"> B. Rs 34498 <br>
+		<input type="radio" name="16" value="c"> C. Rs 34389  <br>
+		<input type="radio" name="16" value="d"> D. Rs 34398 <br>
+    <input type="radio" name="16" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p17" class="container questions"> 
+  		<h3>Question17 :</h3> 
+  		<hr>
+  		<p> If ABCD and EFGH are squares, and AB=10 cm and AE=81/2cm. Find the   area   of the shaded region   </p> 
+	<div>
+		<input type="radio" name="17" value="a"> A. 64 sq.units  <br>
+		<input type="radio" name="17" value="b"> B. 36 sq.units  <br>
+		<input type="radio" name="17" value="c"> C. 64 sq.cm  <br>
+		<input type="radio" name="17" value="d"> D. 36 sq.cm <br>
+    <input type="radio" name="17" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p18" class="container questions"> 
+  		<h3>Question18 :</h3> 
+  		<hr>
+  		<p>  The degree measure of angle A is …? <img src="q18">
+  </p> 
+	<div>
+		<input type="radio" name="18" value="a"> A. 40   <br>
+		<input type="radio" name="18" value="b"> B. 70    <br>
+		<input type="radio" name="18" value="c"> C. 3      <br>
+		<input type="radio" name="18" value="d"> D. 30    <br>
+    <input type="radio" name="18" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p19" class="container questions"> 
+  		<h3>Question19 :</h3> 
+  		<hr>
+  		<p> The total numbers of signals that can be made with 7 different coloured flags is   </p> 
+	<div>
+		<input type="radio" name="19" value="a"> A. 128 <br>
+		<input type="radio" name="19" value="b"> B. 7 <br>
+		<input type="radio" name="19" value="c"> C. 127  <br>
+		<input type="radio" name="19" value="d"> D. 13699 <br>
+    <input type="radio" name="19" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p20" class="container questions"> 
+  		<h3>Question20 :</h3> 
+  		<hr>
+  		<p>  Robert has a rectangular field whose area is 8 m2. To alter the shape of field he reduces the      length of the field by 5 m and increase the breadth by 3 m, which in turn reduces the area of      the field by 8 m2. On the other hand if he increases the length by 3 m and breadth by 2 m, the      area is increased by 74 m2. The original dimension of his field was. </p> 
+	<div>
+		<input type="radio" name="20" value="a"> A. L = 18 m, B = 19 m  <br>
+		<input type="radio" name="20" value="b"> B. L = 10 m, B = 19 m <br>
+		<input type="radio" name="20" value="c"> C. L = 20 m, B = 90 m<br>
+		<input type="radio" name="20" value="d"> D. L = 19 m, B = 10 m <br>
+    <input type="radio" name="20" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  </div>
+
+  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+    	   <div id="m1" class="container questions"> 
+  		<h3>Question1 :</h3> 
+  		<hr>
+  		<p>  Pointing to a person, a man said to a women, “his mother is the only daughter of your father.” How was the women related to the person?  </p> 
+	<div>
+		<input type="radio" name="21" value="a"> A. Aunt <br>
+		<input type="radio" name="21" value="b"> B. Mother <br>
+		<input type="radio" name="21" value="c"> C. Wife <br>
+		<input type="radio" name="21" value="d"> D. Daughter <br>
+     <input type="radio" name="21" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  	  <div id="m2" class="container questions"> 
+  		<h3>Question2 :</h3> 
+  		<hr>
+  		<p> ) In a family, there are six members A, B, C, D, E and F. A and B are a married couple, A being the male member. D is the only son of C, who is the brother of A. E is the sister of D. B is the daughter-inlaw of F, whose husband has died. How is E related to C?  </p> 
+	<div>
+		<input type="radio" name="22" value="a"> A. sister <br>
+		<input type="radio" name="22" value="b"> B. daughter <br>
+		<input type="radio" name="22" value="c"> C. cousin <br>
+		<input type="radio" name="22" value="d"> D. Option A <br>
+     <input type="radio" name="22" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  	 <div id="m3" class="container questions"> 
+  		<h3>Question3 :</h3> 
+  		<hr>
+  		<p>  If Z = 52 and ACT =48, then BAT will be equal to  </p> 
+	<div>
+		<input type="radio" name="23" value="a"> A. 39 <br>
+		<input type="radio" name="23" value="b"> B. 41  <br>
+		<input type="radio" name="23" value="c"> C. 46 <br>
+		<input type="radio" name="23" value="d"> D. 49 <br>
+     <input type="radio" name="23" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div> 
+  </div>
+  <div id="m4" class="container questions"> 
+  		<h3>Question4 :</h3> 
+  		<hr>
+  		<p> If signs + and - are interchanged and also 4 and 8 are interchanged, then find correct choice </p> 
+	<div>
+		<input type="radio" name="24" value="a"> A. 4 + 8 – 12 = 12    <br>
+		<input type="radio" name="24" value="b"> B. 4 – 8 + 12 = 0    <br>
+		<input type="radio" name="24" value="c"> C. 8 + 4 – 12 = 24   <br>
+		<input type="radio" name="24" value="d"> D. 8 – 4 + 12 = 8  <br>
+     <input type="radio" name="24" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m5" class="container questions"> 
+  		<h3>Question5 :</h3> 
+  		<hr>
+  		<p> 583 is related to 293 in same way as 488 is related to __  </p> 
+	<div>
+		<input type="radio" name="25" value="a"> A. 291  <br>
+		<input type="radio" name="25" value="b"> B. 378 <br>
+		<input type="radio" name="25" value="c"> C. 487 <br>
+		<input type="radio" name="25" value="d"> D. 581 <br>
+     <input type="radio" name="25" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m6" class="container questions"> 
+  		<h3>Question6 :</h3> 
+  		<hr>
+  		<p> In a game of whist George partnered Mary, while Ted had to select a partner from the below options. Whom did he choose?  </p> 
+	<div>
+		<input type="radio" name="26" value="a"> A.  ann  <br>
+		<input type="radio" name="26" value="b"> B.  edna <br>
+		<input type="radio" name="26" value="c"> C.  joan  <br>
+		<input type="radio" name="26" value="d"> D. angela  <br>
+     <input type="radio" name="26" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m7" class="container questions"> 
+  		<h3>Question7 :</h3> 
+  		<hr>
+  		<p>  Four working ladies A, B, C and D are sitting around a table. (i) A sits opposite to the cook. (ii)B sits on the right side of the beautician. (iii) teacher is on the left side of the accountant. (iv) D sits opposite to C. (v) C is to the right of the accountant. What are the occupations of A and B? </p> 
+	<div>
+		<input type="radio" name="27" value="a"> A. accountant and beautician  <br>
+		<input type="radio" name="27" value="b"> B. accountant and cook <br>
+		<input type="radio" name="27" value="c"> C. accountant and teacher  <br>
+		<input type="radio" name="27" value="d"> D. teacher and cook <br>
+     <input type="radio" name="27" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m8" class="container questions"> 
+  		<h3>Question8 :</h3> 
+  		<hr>
+  		<p>  Rectangular tiles each of size 70 cm by 30 cm must be laid horizontally on a rectangular floor of size 110 cm by 130 cm, such that the tiles do not overlap. A tile can be placed in any orientation so long as its edges are parallel to the edges of the floor. No tile should overshoot any edge of the floor. The maximum number of tiles that can be accommodated on the floor is  </p> 
+	<div>
+		<input type="radio" name="28" value="a"> A. 4<br>
+		<input type="radio" name="28" value="b"> B. 5 <br>
+		<input type="radio" name="28" value="c"> C. 6 <br>
+		<input type="radio" name="28" value="d"> D. 7 <br>
+     <input type="radio" name="28" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m9" class="container questions"> 
+  		<h3>Question9 :</h3> 
+  		<hr>
+  		<p>  A boy started from his home. After walking for 5 km towards east, he turned to his right and walked for 8 km. Then he again turned to his right and walked for10 km.. In which direction was he from his house? </p> 
+	<div>
+		<input type="radio" name="29" value="a"> A. West  <br>
+		<input type="radio" name="29" value="b"> B. South-West <br>
+		<input type="radio" name="29" value="c"> C. North  <br>
+		<input type="radio" name="29" value="d"> D. North – West <br>
+     <input type="radio" name="29" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m10" class="container questions"> 
+  		<h3>Question10 :</h3> 
+  		<hr>
+  		<p> Which letter replaces the question mark? <img src="q10.png"> </p> 
+	<div>
+		<input type="radio" name="30" value="a"> A. Z <br>
+		<input type="radio" name="30" value="b"> B. R <br>
+		<input type="radio" name="30" value="c"> C. Q <br>
+		<input type="radio" name="30" value="d"> D. X <br>
+     <input type="radio" name="30" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>'
+  <div id="m11" class="container questions"> 
+  		<h3>Question11 :</h3> 
+  		<hr>
+  		<p>Which number replaces the question mark? <img src="q11.png"> </p> 
+	<div>
+		<input type="radio" name="31" value="a"> A. 27 <br>
+		<input type="radio" name="31" value="b"> B. 16 <br>
+		<input type="radio" name="31" value="c"> C. 9 <br>
+		<input type="radio" name="31" value="d"> D. 12 <br>
+    <input type="radio" name="31" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m12" class="container questions"> 
+  		<h3>Question12 :</h3> 
+  		<hr>
+  		<p> Water image of <b>P R A I S E D 9 7 4 3 D E V O T E</b> </p> 
+	<div>
+		<input type="radio" name="32" value="a"> A.  <br>
+		<input type="radio" name="32" value="b"> B. Option A <br>
+		<input type="radio" name="32" value="c"> C. Option A <br>
+		<input type="radio" name="32" value="d"> D. Option A <br>
+    <input type="radio" name="32" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m13" class="container questions"> 
+  		<h3>Question13 :</h3> 
+  		<hr>
+  		<p>  A cube is coloured red on one face, green on the opposite face, yellow on another face and blue on a face adjacent to the yellow face. The other two faces are left uncoloured. It is then cut in to 125 smaller cubes of equal size. How many cubes are coloured blue on one face, red or green on another face and have four uncoloured faces?</p> 
+	<div>
+		<input type="radio" name="33" value="a"> A. 8 <br>
+		<input type="radio" name="33" value="b"> B. 12 <br>
+		<input type="radio" name="33" value="c"> C. 16 <br>
+		<input type="radio" name="33" value="d"> D. 23 <br>
+    <input type="radio" name="33" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m14" class="container questions"> 
+  		<h3>Question14 :</h3> 
+  		<hr>
+  		<p>  All the surfaces of the dice contain different numbers in the form of dots. Consider both the figures of dice and tell how many dots are present on the face opposite to the face with four dots? <img src="q14.png"></p> 
+	<div>
+		<input type="radio" name="34" value="a"> A. 2<br>
+		<input type="radio" name="34" value="b"> B. 3 <br>
+		<input type="radio" name="34" value="c"> C. 5 <br>
+		<input type="radio" name="34" value="d"> D. 6 <br>
+    <input type="radio" name="34" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m15" class="container questions"> 
+  		<h3>Question15 :</h3> 
+  		<hr>
+  		<p> Among five friends, Garima is younger than Nidhi but elder than Latika. Latika is younger than Beena and Megha. Beena is elder than Nidhi but younger than Megha. Who is ranked fourth in the ascending order of age?  </p> 
+	<div>
+		<input type="radio" name="35" value="a"> A. Megha  <br>
+		<input type="radio" name="35" value="b"> B. Beena  <br>
+		<input type="radio" name="35" value="c"> C. Garima  <br>
+		<input type="radio" name="35" value="d"> D. Latika <br>
+    <input type="radio" name="35" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m16" class="container questions"> 
+  		<h3>Question16 :</h3> 
+  		<hr>
+  		<p>Amita, Babita, Chinki, Deepa, Priya and Fatima are standing in a row. Babita is between Fatima and Deepa. Priya is between Amita and Chinki. Amita stands next to neither Fatima nor Deepa. Chinki does not stand next to Deepa. Fatima is between which of the following pair of persons?</p> 
+	<div>
+		<input type="radio" name="36" value="a"> A. Amita and Chinki  <br>
+		<input type="radio" name="36" value="b"> B. Chinki and Deepa  <br>
+		<input type="radio" name="36" value="c"> C. Babita and Chinki <br>
+		<input type="radio" name="36" value="d"> D. Amita and Babita <br>
+    <input type="radio" name="36" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m17" class="container questions"> 
+  		<h3>Question17 :</h3> 
+  		<hr>
+  		<p> In the following question two statements are given followed by two conclusions numbered I, II. You have to take the given statements to be true even if they seem to be at variance from the 
+commonly known facts and then decide which of the given conclusions logically follows from the given statements disregarding commonly known facts. Statements: All fruits are plant products. All mangoes are fruits. Conclusions:<br> I. All mangoes are plant products II. <br>Some fruits are mangoes  </p> 
+	<div>
+		<input type="radio" name="37" value="a"> A. Only conclusion I follows  <br>
+		<input type="radio" name="37" value="b"> B. Only conclusion II follows  <br>
+		<input type="radio" name="37" value="c"> C. Either I or II follows  <br>
+		<input type="radio" name="37" value="d"> D. Both I and II follow  <br>
+    <input type="radio" name="37" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m18" class="container questions"> 
+  		<h3>Question18 :</h3> 
+  		<hr>
+  		<p>  The figure (i) shows the folding of the sheet of a paper along the dotted lines and figure (ii) shows that a punch is made on the folded sheet. If hence the sheet is unfolded, which of the option figures (A),(B) ,(C) ,(D) would show the unfolded form?<br> <img src="q18.jpg"></p> 
+	<div>
+		<input type="radio" name="38" value="a"> A. <img src="q18a.png"> <br>
+		<input type="radio" name="38" value="b"> B. <img src="q18b.png"> <br>
+		<input type="radio" name="38" value="c"> C. <img src="q18c.png"> <br>
+		<input type="radio" name="38" value="d"> D. <img src="q18d.png"> <br>
+    <input type="radio" name="38" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m19" class="container questions"> 
+  		<h3>Question19 :</h3> 
+  		<hr>
+  		<p>  In the words given below, choose the one that comes first, when arranged in alphabetical order as in dictionary.  </p> 
+	<div>
+		<input type="radio" name="39" value="a"> A. Shower <br>
+		<input type="radio" name="39" value="b"> B. Shop <br>
+		<input type="radio" name="39" value="c"> C. Stick  <br>
+		<input type="radio" name="39" value="d"> D. Stand  <br>
+    <input type="radio" name="39" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m20" class="container questions"> 
+  		<h3>Question20 :</h3> 
+  		<hr>
+  		<p> What comes next?<br>BEH , KNQ , TWZ , ?   </p> 
+	<div>
+		<input type="radio" name="40" value="a"> A. IJL <br>
+		<input type="radio" name="40" value="b"> B. CFI  <br>
+		<input type="radio" name="40" value="c"> C. BDF  <br>
+		<input type="radio" name="40" value="d"> D. ADG  <br>
+    <input type="radio" name="40" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  </div>
+  
+  </div>
+ </div>
+</div>
+<hr>
+<button type="submit" class="btn btn-danger endtest"  >End Test</button>
+</div>
+ <!-- Question Display -->
+  <!-- Content Area -->
+</form>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+ 
+      secs=100;
+
+    timer=setInterval(function(){
+      var element =document.getElementById("timer");
+      element.innerHTML="you have "+secs+"to ans";
+      if(secs<1){
+        clearInterval(timer);
+        document.getElementById('questions').submit();
+        alert("Thanks for writing the exam");
+      }
+      secs--;
+    },1000)
+
+
+	function pbutton(){
+		document.getElementById("mbuttons").style.display = "none";
+		document.getElementById("pbuttons").style.display = "grid";
+		document.getElementById("cbuttons").style.display = "none";
+		
+
+
+	}
+	function mbutton(){
+		document.getElementById("mbuttons").style.display = "grid";
+		document.getElementById("pbuttons").style.display = "none";
+		document.getElementById("cbuttons").style.display = "none";
+		
+
+	}
+	function cbutton(){
+		document.getElementById("mbuttons").style.display = "none";
+		document.getElementById("pbuttons").style.display = "none";
+		document.getElementById("cbuttons").style.display = "grid";
+		
+	}
+  function ibutton(){
+    document.getElementById("mbuttons").style.display = "none";
+    document.getElementById("pbuttons").style.display = "none";
+    document.getElementById("cbuttons").style.display = "none";
+    document.getElementById("instruct").style.display = "block";
+    
+  }
+
+	function phyfun(id)
+	{
+		for(var i = 1 ; i<=20 ; i++)
+		{   
+			if(i == id)
+				continue ;
+
+			else
+			{
+			var xid = 'p'.concat(i);
+			var state = document.getElementById(xid).style.display;
+			if(state == 'block')
+			{
+				document.getElementById(xid).style.display = "none";
+			}
+			}
+		}
+		var phy = 'p'.concat(id);
+		document.getElementById(phy).style.display = "block";
+		document.getElementById(id).style.color = "orange";
+		
+	}
+function matfun(id)
+  {
+    for(var i = 21 ; i<=40 ; i++)
+    {   
+      if(i == id)
+        continue ;
+
+      else
+      {
+      var xid = 'm'.concat(i-20);
+      var state = document.getElementById(xid).style.display;
+      if(state == 'block')
+      {
+        document.getElementById(xid).style.display = "none";
+      }
+      }
+    }
+    var phy = 'm'.concat(id-20);
+    document.getElementById(phy).style.display = "block";
+    document.getElementById(id).style.color = "orange";
+    
+  }
+  function chfun(id)
+  {
+    for(var i = 41 ; i<=60 ; i++)
+    {   
+      if(i == id)
+        continue ;
+
+      else
+      {
+      var xid = 'c'.concat(i-40);
+      var state = document.getElementById(xid).style.display;
+      if(state == 'block')
+      {
+        document.getElementById(xid).style.display = "none";
+      }
+      }
+    }
+    var phy = 'c'.concat(id-40);
+    document.getElementById(phy).style.display = "block";
+    document.getElementById(id).style.color = "orange";
+    
+  }
+  
+
+	
+	</script>
+</body>
+</html>

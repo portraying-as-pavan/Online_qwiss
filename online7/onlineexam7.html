@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Online Exam</title>
+
+	<!-- Links -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	
+    <!-- Links -->
+
+    <style type="text/css">
+    	hr{
+    		color: solidblack;
+    	}
+
+    /*	div .menu{
+    		border-right: 1px  solid black;
+
+
+    		 
+    	}*/
+    	.timer{
+    		height: 50px;
+    		background-color: grey;
+    		
+    	}
+    	.header{
+    		height: 50px;
+    		background-color: rgb(212,202,74);
+
+    	}
+    	.username{
+    		height: 50px;
+    		background-color: rgb(68,135,88);
+
+    	}
+    	.questionstab{
+    		
+    		height: 600px;
+          box-shadow: 5px 5px;
+    	}
+    	div .questionstab{
+    		border : 1px solid black;
+    		border-radius: 6px;
+    	}
+    	.qnav{
+    		
+    	}
+    	.endtest{
+    		position: relative;
+    		left: 75vw;
+    	}
+    	 
+    	
+    	#pbuttons{
+    		display: grid;
+			grid-template-columns: repeat(4,1fr);
+            border: 1px solid blue;
+            border-radius: 4px;
+    	}
+    	#pbuttons div{
+    		margin-left: 5px;
+    		margin-bottom: 5px;
+    	}
+    	#cbuttons{
+    		
+    		display: none;
+    		grid-template-columns: repeat(4,1fr);
+            border: 1px solid blue;
+             border-radius: 4px;
+    	}
+    	#cbuttons div{
+    		margin-left: 5px;
+    		margin-bottom: 5px;
+
+    	}
+    	#mbuttons{
+    		
+    		display: none;
+    		grid-template-columns: repeat(4,1fr);
+            border: 1px solid blue;
+            border-radius: 4px;
+    	}
+    	#mbuttons div{
+    		margin-left: 5px;
+    		margin-bottom: 5px;
+
+
+    	}
+    	.questions{
+    		display: none;
+    	}
+
+      #offsetter{
+        display: none;
+      }
+    	
+        
+    </style>
+    
+</head>
+<body>
+<div class="poppup">
+	<div class="row">
+	
+  
+   <!-- Menu -->
+	<div class="col-md-2 menu">
+	
+	<div class="timer" id="timer">
+		<h4>Timer </h4>
+	</div>
+	<hr >
+	<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+   
+  <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false" onclick="pbutton()"> MATHEMATICS </a>
+  <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false" onclick="mbutton()"> MENTAL ABILITY </a>
+  <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false" onclick="cbutton()"> ENGLISH </a>
+ 	
+  </div>
+ 	<hr>
+  <!------------instructions--------->
+  
+  <!-- For buttons -->
+ <div id="pbuttons">
+ <div><button type="button" id="1"  onclick="phyfun(1)">01</button></div>
+ <div><button type="button" id="2"  onclick="phyfun(2)">02</button></div>
+ <div><button type="button" id="3"  onclick="phyfun(3)">03</button></div>
+ <div><button type="button" id="4"  onclick="phyfun(4)">04</button></div> 
+ <div><button type="button" id="5"  onclick="phyfun(5)">05</button></div>
+ <div><button type="button" id="6"  onclick="phyfun(6)">06</button></div>
+ <div><button type="button" id="7"  onclick="phyfun(7)">07</button></div>
+ <div><button type="button" id="8"  onclick="phyfun(8)">08</button></div>
+ <div><button type="button" id="9"  onclick="phyfun(9)">09</button></div>
+ <div><button type="button" id="10" onclick="phyfun(10)">10</button></div>
+ <div><button type="button" id="11" onclick="phyfun(11)">11</button></div>
+ <div><button type="button" id="12" onclick="phyfun(12)">12</button></div> 
+ <div><button type="button" id="13" onclick="phyfun(13)">13</button></div>
+ <div><button type="button" id="14" onclick="phyfun(14)">14</button></div>
+ <div><button type="button" id="15" onclick="phyfun(15)">15</button></div>
+ <div><button type="button" id="16" onclick="phyfun(16)">16</button></div>
+ <div><button type="button" id="17" onclick="phyfun(17)">17</button></div>
+ <div><button type="button" id="18" onclick="phyfun(18)">18</button></div>
+ <div><button type="button" id="19" onclick="phyfun(19)">19</button></div>
+ <div><button type="button" id="20" onclick="phyfun(20)">20</button></div>
+</div>
+
+<div id="mbuttons">
+ <div><button type="button" id="21"  onclick="matfun(21)">21</button></div>
+ <div><button type="button" id="22"  onclick="matfun(22)">22</button></div>
+ <div><button type="button" id="23"  onclick="matfun(23)">23</button></div>
+ <div><button type="button" id="24"  onclick="matfun(24)">24</button></div> 
+ <div><button type="button" id="25"  onclick="matfun(25)">25</button></div>
+ <div><button type="button" id="26"  onclick="matfun(26)">26</button></div>
+ <div><button type="button" id="27"  onclick="matfun(27)">27</button></div>
+ <div><button type="button" id="28"  onclick="matfun(28)">28</button></div>
+ <div><button type="button" id="29"  onclick="matfun(29)">29</button></div>
+ <div><button type="button" id="30"  onclick="matfun(30)">30</button></div>
+ <!--<div><button type="button" id="31"  onclick="matfun(31)">26</button></div>
+ <div><button type="button" id="32"  onclick="matfun(32)">27</button></div> 
+ <div><button type="button" id="33"  onclick="matfun(33)">28</button></div>
+ <div><button type="button" id="34"  onclick="matfun(34)">29</button></div>
+ <div><button type="button" id="35"  onclick="matfun(35)">30</button></div>
+ <div><button type="button" id="36"  onclick="matfun(36)">36</button></div>
+ <div><button type="button" id="37"  onclick="matfun(37)">37</button></div>
+ <div><button type="button" id="38"  onclick="matfun(38)">38</button></div>
+ <div><button type="button" id="39"  onclick="matfun(39)">39</button></div>
+ <div><button type="button" id="40"  onclick="matfun(40)">40</button></div>-->
+</div>
+
+<div id="cbuttons">
+ <div><button type="button" id="41"  onclick="chfun(41)">31</button></div>
+ <div><button type="button" id="42"  onclick="chfun(42)">32</button></div>
+ <div><button type="button" id="43"  onclick="chfun(43)">33</button></div>
+ <div><button type="button" id="44"  onclick="chfun(44)">34</button></div> 
+ <div><button type="button" id="45"  onclick="chfun(45)">35</button></div>
+ <div><button type="button" id="46"  onclick="chfun(46)">36</button></div>
+ <div><button type="button" id="47"  onclick="chfun(47)">37</button></div>
+ <div><button type="button" id="48"  onclick="chfun(48)">38</button></div>
+ <div><button type="button" id="49"  onclick="chfun(49)">39</button></div>
+ <div><button type="button" id="50"  onclick="chfun(50)">40</button></div>
+ <!--<div><button type="button" id="51"  onclick="chfun(51)">41</button></div>
+ <div><button type="button" id="52"  onclick="chfun(52)">42</button></div> 
+ <div><button type="button" id="53"  onclick="chfun(53)">43</button></div>
+ <div><button type="button" id="54"  onclick="chfun(54)">44</button></div>
+ <div><button type="button" id="55"  onclick="chfun(55)">45</button></div>
+ <div><button type="button" id="56"  onclick="chfun(56)">56</button></div>
+ <div><button type="button" id="57"  onclick="chfun(57)">57</button></div>
+ <div><button type="button" id="58"  onclick="chfun(58)">58</button></div>
+ <div><button type="button" id="59"  onclick="chfun(59)">59</button></div>
+ <div><button type="button" id="60"  onclick="chfun(60)">60</button></div>-->
+</div>
+<!-- For buttons -->
+
+	</div>
+
+	<!-- Menu -->
+
+
+   <!-- Content Area -->
+  
+	<div class="col-md-10">
+		 
+<!-- Header Section -->
+		 <div class="row ">
+		 	<div class="col-md-9 header">
+		 		<h2>Q-Wissenaire  </h2>
+		 	</div>
+		 	<div class="col-md-3 username">
+		 		<h4> VIIth Class </h4>
+		 	</div>
+   		 </div>
+   <hr >
+  <!-- Header Section -->
+  
+  <!-- Question Display -->
+  <div class="questionstab">
+<div class="tab-content qnav" id="v-pills-tabContent">
+<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" >
+  <form id="questions" action="ans7.php" method="POST">
+  	<div id="p1" class="container questions"> 
+  		<h3>Question1 :</h3> 
+  		<hr>
+  		<p> Solve simultaneous equations 13x - 6y = 20, 7x + 4y = 18  </p> 
+	<div>
+	
+		<input type="radio" name="1" value="a"> A. x = 2, y = 1  <br>
+		<input type="radio" name="1" value="b"> B. x = 4, y = 8  <br>
+		<input type="radio" name="1" value="c"> C. x = 6, y = 1  <br>
+		<input type="radio" name="1" value="d"> D. x = 2, y = 4 <br>
+    <input type="radio" name="1" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+		
+	</div>
+  </div>
+
+    <div id="p2" class="container questions"> 
+  		<h3>Question2 :</h3> 
+  		
+  		<hr>
+  		<p> A triangle whose sides are 15cm,36cm, and 39cm is  </p> 
+	<div>
+	
+		<input type="radio" name="2" value="a"> A.	Right angled  <br>
+		<input type="radio" name="2" value="b"> B.	Equilateral  <br>
+		<input type="radio" name="2" value="c"> C.	isosceles  <br>
+		<input type="radio" name="2" value="d"> D.	none of above  <br>
+    <input type="radio" name="2" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p3" class="container questions"> 
+  		<h3>Question3 :</h3> 
+  		<hr>
+  		<p> Mode of 12, 17, 16, 14, 13, 16, 11, 14 is  </p> 
+	<div>
+		<input type="radio" name="3" value="a"> A.	13<br>
+		<input type="radio" name="3" value="b"> B.	11  <br>
+		<input type="radio" name="3" value="c"> C.	14  <br>
+		<input type="radio" name="3" value="d"> D.	14 and 16  <br>
+    <input type="radio" name="3" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p4" class="container questions"> 
+  		<h3>Question4 :</h3> 
+  		<hr>
+  		<p> Two numbers whose sum is 67 and difference is 3, numbers are  </p> 
+	<div>
+	
+		<input type="radio" name="4" value="a"> A.	33 and 34  <br>
+		<input type="radio" name="4" value="b"> B.	32 and 35                       <br>
+		<input type="radio" name="4" value="c"> C.	34 and 56  <br>
+		<input type="radio" name="4" value="d"> D.	6 and 15  <br>
+    <input type="radio" name="4" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p5" class="container questions"> 
+  		<h3>Question5 :</h3> 
+  		<hr>
+  		<p> A cone has a circular base of radius 6m and volume 84π m^3. height of cone is  </p> 
+	<div>
+	
+		<input type="radio" name="5" value="a"> A.  7m  <br>
+		<input type="radio" name="5" value="b"> B.	6m <br>
+		<input type="radio" name="5" value="c"> C.	8m  <br>
+		<input type="radio" name="5" value="d"> D.	9m <br>
+    <input type="radio" name="5" value="e" id="offsetter" checked="checked">
+
+		<button type="reset" class="btn btn-info clear" id="clear" > Clear </button>
+	</div>
+  </div>
+  <div id="p6" class="container questions"> 
+  		<h3>Question6 :</h3> 
+  		<hr>
+  		<p> If E= {3, 5, 7, 9, 11, 13, 15} and A = {3, 5, 7} then its complement is  </p> 
+	<div>
+	
+		<input type="radio" name="6" value="a"> A.	{3, 5, 7}  <br>
+		<input type="radio" name="6" value="b"> B.	{9, 11, 13, 15}  <br>
+		<input type="radio" name="6" value="c"> C.	{2, 4, 6, 8} <br>
+		<input type="radio" name="6" value="d"> D.	None of above  <br>
+    <input type="radio" name="6" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p7" class="container questions"> 
+  		<h3>Question7 :</h3> 
+  		<hr>
+  		<p> There are 44 employees in a bank, who work in three shifts. The first group of 19 employees work from 10:00 am to 1:00 pm. The second group of 8 employees work from 12:00 pm to 2:00 pm. The third group of 17 employees work from 1:00pm to 2:00pm.if there are only 10 computers, during what time are the computers likely to be used most?  </p> 
+	<div>
+	
+		<input type="radio" name="7" value="a"> A.	1:00 PM TO 2:00PM  <br>
+		<input type="radio" name="7" value="b"> B.	12:00 PM TO 2:00PM  <br>
+		<input type="radio" name="7" value="c"> C.	10:00 AM TO 1:00PM  <br>
+		<input type="radio" name="7" value="d"> D.	12:00 PM TO 1:00PM  <br>
+    <input type="radio" name="7" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p8" class="container questions"> 
+  		<h3>Question8 :</h3> 
+  		<hr>
+  		<p> Sahiti plays football every 4th day.If she played football on tuesday.after how many days will she again play football on friday?  </p> 
+	<div>
+	
+		<input type="radio" name="8" value="a"> A. 24 <br>
+		<input type="radio" name="8" value="b"> B. 25 <br>
+		<input type="radio" name="8" value="c"> C. 26 <br>
+		<input type="radio" name="8" value="d"> D. 27 <br>
+    <input type="radio" name="8" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p9" class="container questions"> 
+  		<h3>Question9 :</h3> 
+  		<hr>
+  		<p> Four friends Ronald, Lisa, Kevin and William are standing in a row. Ronald is not standing at first position. Lisa is not standing at last position. Kevin is standing behind Lisa. William is standing behind Kevin and Ronald. Who is standing at 1st position?  </p> 
+	<div>
+	
+		<input type="radio" name="9" value="a"> A. kevin <br>
+		<input type="radio" name="9" value="b"> B. ronald  <br>
+		<input type="radio" name="9" value="c"> C. william  <br>
+		<input type="radio" name="9" value="d"> D. lisa  <br>
+    <input type="radio" name="9" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p10" class="container questions"> 
+  		<h3>Question10 :</h3> 
+  		<hr>
+  		<p> If there are n numbers of which one is (1-1/n) and all the others are 1s,then by how much is the arthematic mean of these numbers less than 1.  </p> 
+	<div>
+	
+		<input type="radio" name="10" value="a"> A. n2  <br>
+		<input type="radio" name="10" value="b"> B. 1/n   <br>
+		<input type="radio" name="10" value="c"> C. n  <br>
+		<input type="radio" name="10" value="d"> D. 1/n2  <br>
+    <input type="radio" name="10" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p11" class="container questions"> 
+  		<h3>Question11 :</h3> 
+  		<hr>
+  		<p> In a caravan, in addition to 50 hens, there are 45 goats and 8 camels with some  keepers. If the total number of feet be 224 more than the number of heads, then find the  number of keepers:  </p> 
+	<div>
+	
+		<input type="radio" name="11" value="a"> A. 19 <br>
+		<input type="radio" name="11" value="b"> B. 17 <br>
+		<input type="radio" name="11" value="c"> C. 16 <br>
+		<input type="radio" name="11" value="d"> D. 15 <br>
+    <input type="radio" name="11" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p12" class="container questions"> 
+  		<h3>Question12 :</h3> 
+  		<hr>
+  		<p> A shop keeper mixes two variants of teas in ratio 5:1. The first variety costs $30 per kg, while other costs $18 per kg. If the mixed tea is sold at a price of 19.6 per kg. Find the profit/loss incurred in by the shop keeper.  </p> 
+	<div>
+	
+		<input type="radio" name="12" value="a"> A. 30% loss   <br>
+		<input type="radio" name="12" value="b"> B. 30% profit   <br>
+		<input type="radio" name="12" value="c"> C. 20% loss   <br>
+		<input type="radio" name="12" value="d"> D. 20% profit  <br>
+    <input type="radio" name="12" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p13" class="container questions"> 
+  		<h3>Question13 :</h3> 
+  		<hr>
+  		<p> Donald changes a picture on his computer such that width of the image is 90% of the original image and height of the image is 70% of the original image. If area of new image is 30.24 cm2, the area of the original image is (in cm2)  </p> 
+	<div>
+	
+		<input type="radio" name="13" value="a"> A. 47 <br>
+		<input type="radio" name="13" value="b"> B. 48 <br>
+		<input type="radio" name="13" value="c"> C. 49 <br>
+		<input type="radio" name="13" value="d"> D. 50 <br>
+    <input type="radio" name="13" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p14" class="container questions"> 
+  		<h3>Question14 :</h3> 
+  		<hr>
+  		<p> Daniel, Sharon, David, and Karen all celebrate their birthdays today. Daniel is 7yrs younger than Sharon, Sharon is 3yrs older than David, and Karen is 4yrs older than Daniel. Which of the following could be the combined age of all of them today?  </p> 
+	<div>
+	
+		<input type="radio" name="14" value="a"> A. 52 <br>
+		<input type="radio" name="14" value="b"> B. 51 <br>
+		<input type="radio" name="14" value="c"> C. 50 <br>
+		<input type="radio" name="14" value="d"> D. 56 <br>
+    <input type="radio" name="14" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p15" class="container questions"> 
+  		<h3>Question15 :</h3> 
+  		<hr>
+  		<p> A die has numbers 1 to 6, such that sum of opposite faces are always 7.Which is the correct view of die? </p> 
+	<div>
+		<div class="row">
+			<div class="col-6">
+		<input type="radio" name="15" value="a"> A. <img src="Screenshot (150).png"> <br>
+		<input type="radio" name="15" value="b"> B. <img src="Screenshot (151).png"> <br>
+			</div>
+			<div class="col-6">
+		<input type="radio" name="15" value="c"> C. <img src="Screenshot (152).png"> <br>
+		<input type="radio" name="15" value="d"> D. <img src="Screenshot (153).png"> <br>
+    <input type="radio" name="15" value="e" id="offsetter" checked="checked">
+			</div></div>
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p16" class="container questions"> 
+  		<h3>Question16 :</h3> 
+  		<hr>
+  		<p> If y is an integer,which of the following must be an odd integer? </p> 
+	<div>
+	
+		<input type="radio" name="16" value="a"> A. 52y3+3  <br>
+		<input type="radio" name="16" value="b"> B. 3y  <br>
+		<input type="radio" name="16" value="c"> C. y3+ 3  <br>
+		<input type="radio" name="16" value="d"> D. 3y+ 52 <br>
+    <input type="radio" name="16" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p17" class="container questions"> 
+  		<h3>Question17 :</h3> 
+  		<hr>
+  		<p> The total length of all songs on a CD, Anshuman bought is about 74 minutes. Each song is between 4 to 6 minutes long. Which is a reasonable number of songs that could be on the CD ?  </p> 
+	<div>
+	
+		<input type="radio" name="17" value="a"> A. 14 <br>
+		<input type="radio" name="17" value="b"> B. 15 <br>
+		<input type="radio" name="17" value="c"> C. 16 <br>
+		<input type="radio" name="17" value="d"> D. 17 <br>
+    <input type="radio" name="17" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p18" class="container questions"> 
+  		<h3>Question18 :</h3> 
+  		<hr>
+  		<p> It took Abhilasha 20 minutes to apply a coat of paint to a piece of pottery. After each coat she waited for 1 hour 30 minutes for the paint to dry. Which is a reasonable amount of time it could have taken for Abhilasha to have applied 5 coats of paint and for the pottery to be completely dry ?  </p> 
+	<div>
+	
+		<input type="radio" name="18" value="a"> A. 54/6  <br>
+		<input type="radio" name="18" value="b"> B. 55/6  <br>
+		<input type="radio" name="18" value="c"> C. 56/6  <br>
+		<input type="radio" name="18" value="d"> D. 57/6  <br>
+    <input type="radio" name="18" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p19" class="container questions"> 
+  		<h3>Question19 :</h3> 
+  		<hr>
+  		<p> A frog is climbing on the water slide.In one jump it goes 50cm up and then coms back 20cm .the total distance of slide is 260cm. assuming at the top of the water slide there is no sliding affect,in how many jumps will he reach top of the slide?  </p> 
+	<div>
+	
+		<input type="radio" name="19" value="a"> A. 7 <br>
+		<input type="radio" name="19" value="b"> B. 8 <br>
+		<input type="radio" name="19" value="c"> C. 9 <br>
+		<input type="radio" name="19" value="d"> D. 10 <br>
+    <input type="radio" name="19" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p20" class="container questions"> 
+  		<h3>Question20 :</h3> 
+  		<hr>
+  		<p> Hrishant packs boxes for an appliance company. He can pack a large box in 10 minutes and a small box in 4 minutes. He needs to pack 10 large boxes and 20 small boxes. If he starts his work 3.5 hours before closing time, will Hrishant have time to finish the work before closing time if he works without stopping ?  </p> 
+	<div>
+	
+		<input type="radio" name="20" value="a"> A. Yes, Hrishant will finish the work in 3 hours.  <br>
+		<input type="radio" name="20" value="b"> B. No, it will take Hrishant 4 hours to finish.  <br>
+		<input type="radio" name="20" value="c"> C. Yes, Hrishant will finish the work in 2.5 hours.  <br>
+		<input type="radio" name="20" value="d"> D. No, it will take Hrishant 6 hours to finish.  <br>
+    <input type="radio" name="20" value="e" id="offsetter" checked="checked">
+
+		 
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+
+</div>
+  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+  	<div id="m1" class="container questions"> 
+  		<h3>Question 1 :</h3> 
+  		<hr>
+  		<p>	Identify the mirror image of the following figure if the mirror is placed vertically.<img src="Screenshot (144).png">   </p> 
+	<div>
+		<div class="row">
+			<div class="col-6">
+		<input type="radio" name="21" value="a"> A. <img src="Screenshot (145).png"> <br>
+		<input type="radio" name="21" value="b"> B. <img src="Screenshot (146).png"> <br>
+			</div>
+			<div class="col-6">
+		<input type="radio" name="21" value="c"> C. <img src="Screenshot (147).png"> <br>
+		<input type="radio" name="21" value="d"> D. <img src="Screenshot (148).png"> <br>
+    <input type="radio" name="21" value="e" id="offsetter" checked="checked">
+			</div></div>
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m2" class="container questions"> 
+  		<h3>Question 2 :</h3> 
+  		<hr>
+  		<p>	Find the missing letter in the series given below. H N I M J __   </p> 
+	<div>
+	
+		<input type="radio" name="22" value="a"> A. K <br>
+		<input type="radio" name="22" value="b"> B. P <br>
+		<input type="radio" name="22" value="c"> C. D <br>
+		<input type="radio" name="22" value="d"> D. L <br>
+    <input type="radio" name="22" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+		
+	</div>
+  </div>
+  <div id="m3" class="container questions"> 
+  		<h3>Question3 :</h3> 
+  		<hr>
+  		<p> Find the odd one out.  </p> 
+	<div>
+		<input type="radio" name="23" value="a"> A.  AZ  <br>
+		<input type="radio" name="23" value="b"> B.  CW  <br>
+		<input type="radio" name="23" value="c"> C.  GT  <br>
+		<input type="radio" name="23" value="d"> D.  JQ  <br>
+    <input type="radio" name="23" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m4" class="container questions"> 
+  		<h3>Question4 :</h3> 
+  		<hr>
+  		<p> What comes in the place of question mark?  <img src="Screenshot (137).png"></p> 
+	<div>
+		<div class="row">
+			<div class="col-6">
+		<input type="radio" name="24" value="a"> A. <img src="Screenshot (138).png"> <br>
+		<input type="radio" name="24" value="b"> B. <img src="Screenshot (139).png"> <br>
+			</div>
+			<div class="col-6">
+		<input type="radio" name="24" value="c"> C. <img src="Screenshot (140).png"> <br>
+		<input type="radio" name="24" value="d"> D. <img src="Screenshot (141).png"> <br>
+    <input type="radio" name="24" value="e" id="offsetter" checked="checked">
+			</div></div>
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m5" class="container questions"> 
+  		<h3>Question5 :</h3> 
+  		<hr>
+  		<p> How many times do the hands of a clock coincide in a day?  </p> 
+	<div>
+		<input type="radio" name="25" value="a"> A. 20 <br>
+		<input type="radio" name="25" value="b"> B. 21 <br>
+		<input type="radio" name="25" value="c"> C. 22 <br>
+		<input type="radio" name="25" value="d"> D. 24 <br>
+    <input type="radio" name="25" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m6" class="container questions"> 
+  		<h3>Question6 :</h3> 
+  		<hr>
+  		<p> Pole A is 97 cm longer than pole B. Pole C is twice as long as Pole B. If Pole C is 264 cm long, what is the length of Pole A?  </p> 
+	<div>
+		<input type="radio" name="26" value="a"> A.  97 cm 	 <br>
+		<input type="radio" name="26" value="b"> B.  2m 31 cm <br>
+		<input type="radio" name="26" value="c"> C.  2 m 29 cm  <br>
+		<input type="radio" name="26" value="d"> D.  2 m 64 cm  <br>
+    <input type="radio" name="26" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m7" class="container questions"> 
+  		<h3>Question7 :</h3> 
+  		<hr>
+  		<p> If 2 * 6 = 64, 3 * 5 = 8, 7 * 8 = 1, then 2 * 8 =?  </p> 
+	<div>
+		<input type="radio" name="27" value="a"> A. 27 <br>
+		<input type="radio" name="27" value="b"> B. 64 <br>
+		<input type="radio" name="27" value="c"> C. 125 <br>
+		<input type="radio" name="27" value="d"> D. 216 <br>
+    <input type="radio" name="27" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m8" class="container questions"> 
+  		<h3>Question8 :</h3> 
+  		<hr>
+  		<p> What will be the acute angle between hands of the clock when the time is 2 : 30 </p> 
+	<div>
+		<input type="radio" name="28" value="a"> A. 15 <br>
+		<input type="radio" name="28" value="b"> B. 115 <br>
+		<input type="radio" name="28" value="c"> C. 5 <br>
+		<input type="radio" name="28" value="d"> D. 25 <br>
+    <input type="radio" name="28" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m9" class="container questions"> 
+  		<h3>Question9 :</h3> 
+  		<hr>
+  		<p> If P means division, T means addition, M means subtraction and   means multiplication, what will be the value of the expression 12 M 12 D 28 P 7 T 15?  </p> 
+	<div>
+		<input type="radio" name="29" value="a"> A. -30 <br>
+		<input type="radio" name="29" value="b"> B. -15 <br>
+		<input type="radio" name="29" value="c"> C. 15  <br>
+		<input type="radio" name="29" value="d"> D. -21 <br>
+    <input type="radio" name="29" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m10" class="container questions"> 
+  		<h3>Question10 :</h3> 
+  		<hr>
+  		<p> Which of the following options will replace the question mark?  </p> 
+	<div>
+		<input type="radio" name="30" value="a"> A. 4 <br>
+		<input type="radio" name="30" value="b"> B. 7 <br>
+		<input type="radio" name="30" value="c"> C. 8 <br>
+		<input type="radio" name="30" value="d"> D. 5 <br>
+    <input type="radio" name="30" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+   <div id="m11" class="container questions"> 
+      <h3>Question16 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="56" value="a"> A. Option A <br>
+    <input type="radio" name="56" value="b"> B. Option A <br>
+    <input type="radio" name="56" value="c"> C. Option A <br>
+    <input type="radio" name="56" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+
+ <div id="m12" class="container questions"> 
+      <h3>Question16 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="56" value="a"> A. Option A <br>
+    <input type="radio" name="56" value="b"> B. Option A <br>
+    <input type="radio" name="56" value="c"> C. Option A <br>
+    <input type="radio" name="56" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+ <div id="m13" class="container questions"> 
+      <h3>Question16 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="56" value="a"> A. Option A <br>
+    <input type="radio" name="56" value="b"> B. Option A <br>
+    <input type="radio" name="56" value="c"> C. Option A <br>
+    <input type="radio" name="56" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+
+ <div id="m14" class="container questions"> 
+      <h3>Question16 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="56" value="a"> A. Option A <br>
+    <input type="radio" name="56" value="b"> B. Option A <br>
+    <input type="radio" name="56" value="c"> C. Option A <br>
+    <input type="radio" name="56" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+
+ <div id="m15" class="container questions"> 
+      <h3>Question16 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="56" value="a"> A. Option A <br>
+    <input type="radio" name="56" value="b"> B. Option A <br>
+    <input type="radio" name="56" value="c"> C. Option A <br>
+    <input type="radio" name="56" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+  <div id="m16" class="container questions"> 
+      <h3>Question16 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="36" value="a"> A. Option A <br>
+    <input type="radio" name="36" value="b"> B. Option A <br>
+    <input type="radio" name="36" value="c"> C. Option A <br>
+    <input type="radio" name="36" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+  <div id="m17" class="container questions"> 
+      <h3>Question17 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="37" value="a"> A. Option A <br>
+    <input type="radio" name="37" value="b"> B. Option A <br>
+    <input type="radio" name="37" value="c"> C. Option A <br>
+    <input type="radio" name="37" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+  <div id="m18" class="container questions"> 
+      <h3>Question18 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="38" value="a"> A. Option A <br>
+    <input type="radio" name="38" value="b"> B. Option A <br>
+    <input type="radio" name="38" value="c"> C. Option A <br>
+    <input type="radio" name="38" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+  <div id="m19" class="container questions"> 
+      <h3>Question19 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="39" value="a"> A. Option A <br>
+    <input type="radio" name="39" value="b"> B. Option A <br>
+    <input type="radio" name="39" value="c"> C. Option A <br>
+    <input type="radio" name="39" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+  <div id="m20" class="container questions"> 
+      <h3>Question20 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="40" value="a"> A. Option A <br>
+    <input type="radio" name="40" value="b"> B. Option A <br>
+    <input type="radio" name="40" value="c"> C. Option A <br>
+    <input type="radio" name="40" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+  </div>
+
+    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+       <div id="c1" class="container questions">
+  		<h3>Question1 :</h3> 
+  		<hr>
+  		<p> The word which means time when one is not working or occupied </p> 
+	<div>
+		<input type="radio" name="41" value="a"> A. opportunity  <br>
+		<input type="radio" name="41" value="b"> B. busy  <br>
+		<input type="radio" name="41" value="c"> C. duty <br>
+		<input type="radio" name="41" value="d"> D. leisure <br>
+    <input type="radio" name="41" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  	  <div id="c2" class="container questions"> 
+  		<h3>Question2 :</h3> 
+  		<hr>
+  		<p> They decided to put off the celebrations.(Find the correct meaning of the underlined phrase)  </p> 
+	<div>
+		<input type="radio" name="42" value="a"> A. begin  <br>
+		<input type="radio" name="42" value="b"> B. postpone  <br>
+		<input type="radio" name="42" value="c"> C. pursue  <br>
+		<input type="radio" name="42" value="d"> D. not <br>
+    <input type="radio" name="42" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  	 <div id="c3" class="container questions"> 
+  		<h3>Question3 :</h3> 
+  		<hr>
+  		<p> How many people ________ in your family ?  </p> 
+	<div>
+		<input type="radio" name="43" value="a"> A. is there   <br>
+		<input type="radio" name="43" value="b"> B. There are  <br>
+		<input type="radio" name="43" value="c"> C. Are there   <br>
+		<input type="radio" name="43" value="d"> D. There  <br>
+    <input type="radio" name="43" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div> 
+  </div>
+  <div id="c4" class="container questions"> 
+  		<h3>Question4 :</h3> 
+  		<hr>
+  		<p> has Steve got a sister ? . No he _______, but hes got 2 brothers.             </p> 
+	<div>
+		<input type="radio" name="44" value="a"> A. Has <br>
+		<input type="radio" name="44" value="b"> B. Hasn’t  <br>
+		<input type="radio" name="44" value="c"> C. Haven’t  <br>
+		<input type="radio" name="44" value="d"> D. Not  <br>
+    <input type="radio" name="44" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="c5" class="container questions"> 
+  		<h3>Question5 :</h3> 
+  		<hr>
+  		<p> When ______ to London ?    </p> 
+	<div>
+		<input type="radio" name="45" value="a"> A.	moved John <br>
+		<input type="radio" name="45" value="b"> B.	did John move  <br>
+		<input type="radio" name="45" value="c"> C. did John went  <br>
+		<input type="radio" name="45" value="d"> D. went John  <br>
+    <input type="radio" name="45" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="c6" class="container questions"> 
+  		<p><h3>COMPREHENSION</h3> 
+Read the following passage carefully and answer the questions that follow- 
+Prafulla Chandra Ray was born on 2 August 1861 in the district of Jessore, now in Bangladesh, close to the birth place of Madhusudan Dutt, widely regarded as the Milton of Bengal. It was the best of times and the worst . The British had by now perfected their role as masters and British values permeated the Indian upper classes to the very last detail like table manners. That of course, was not the worst of the British influence. What was far more demeaning to the educated Indians – and there were several – was the fact that senior government positions were closed to them. Being forfeited of ones right in ones land of birth would become the rallying point for the Indian intelligentsia in the years to come. Ray s father Harish Chandra Ray, a man of learning and taste, was closely associated with the cultural and intellectual leaders of the time and exerted great influence on his son. Ray had his early schooling in the village school founded by his father but soon his father shifted to Calcutta and at the age of nine, little Prafulla set eyes for the first time, on the bustling city that would be his home for many years to come. He was filled with wonder at the ever-changing sights and sounds – the city seemed to change moods ever so often! His formal schooling was interrupted due to illness but that did not affect his education. 
+</p>
+  		<h3>Question6 :</h3> 
+  		<hr>
+  		<p> The British perfected their role as masters because  </p> 
+	<div>
+		<input type="radio" name="46" value="a"> A. they had enslaved Indians <br>
+		<input type="radio" name="46" value="b"> B. they showed that they were superior  <br>
+		<input type="radio" name="46" value="c"> C. they were hated by the upper classes <br>
+		<input type="radio" name="46" value="d"> D. upper class Indians accepted them as role models  <br>
+    <input type="radio" name="46" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="c7" class="container questions"> 
+  	<p><h3>COMPREHENSION</h3> 
+Read the following passage carefully and answer the questions that follow- 
+Prafulla Chandra Ray was born on 2 August 1861 in the district of Jessore, now in Bangladesh, close to the birth place of Madhusudan Dutt, widely regarded as the Milton of Bengal. It was the best of times and the worst… The British had by now perfected their role as masters and British values permeated the Indian upper classes to the very last detail like table manners. That of course, was not the worst of the British influence. What was far more demeaning to the educated Indians – and there were several – was the fact that senior government positions were closed to them. Being forfeited of one’s right in one’s land of birth would become the rallying point for the Indian intelligentsia in the years to come. Ray’s father Harish Chandra Ray, a man of learning and taste, was closely associated with the cultural and intellectual leaders of the time and exerted great influence on his son. Ray had his early schooling in the village school founded by his father but soon his father shifted to Calcutta and at the age of nine, little Prafulla set eyes for the first time, on the bustling city that would be his home for many years to come. He was filled with wonder at the ever-changing sights and sounds – the city seemed to change moods ever so often! His formal schooling was interrupted due to illness but that did not affect his education. 
+</p>
+  		<h3>Question7 :</h3> 
+  		<hr>
+  		<p> The educated Indians felt insulted by the fact that </p> 
+	<div>
+		<input type="radio" name="47" value="a"> A. They had to follow British Customs. <br>
+		<input type="radio" name="47" value="b"> B. They were not allowed to study in institutions of higher learning <br>
+		<input type="radio" name="47" value="c"> C. They were not promoted to senior government positions <br>
+		<input type="radio" name="47" value="d"> D. They were forced to speak only in English.  <br>
+    <input type="radio" name="47" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="c8" class="container questions"> 
+  	<p><h3>COMPREHENSION</h3> 
+Read the following passage carefully and answer the questions that follow- 
+Prafulla Chandra Ray was born on 2 August 1861 in the district of Jessore, now in Bangladesh, close to the birth place of Madhusudan Dutt, widely regarded as the Milton of Bengal. It was the best of times and the worst… The British had by now perfected their role as masters and British values permeated the Indian upper classes to the very last detail like table manners. That of course, was not the worst of the British influence. What was far more demeaning to the educated Indians – and there were several – was the fact that senior government positions were closed to them. Being forfeited of one’s right in one’s land of birth would become the rallying point for the Indian intelligentsia in the years to come. Ray’s father Harish Chandra Ray, a man of learning and taste, was closely associated with the cultural and intellectual leaders of the time and exerted great influence on his son. Ray had his early schooling in the village school founded by his father but soon his father shifted to Calcutta and at the age of nine, little Prafulla set eyes for the first time, on the bustling city that would be his home for many years to come. He was filled with wonder at the ever-changing sights and sounds – the city seemed to change moods ever so often! His formal schooling was interrupted due to illness but that did not affect his education. 
+</p>
+  		<h3>Question8 :</h3> 
+  		<hr>
+  		<p>	Prafulla Chandra Ray was greatly influenced by…….                                          </p> 
+	<div>
+		<input type="radio" name="48" value="a"> A. his brother <br>
+		<input type="radio" name="48" value="b"> B. his uncle   <br>
+		<input type="radio" name="48" value="c"> C. his father  <br>
+		<input type="radio" name="48" value="d"> D. his cousin  <br>
+    <input type="radio" name="48" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="c9" class="container questions"> 
+  	<p><h3>COMPREHENSION</h3> 
+Read the following passage carefully and answer the questions that follow- 
+Prafulla Chandra Ray was born on 2 August 1861 in the district of Jessore, now in Bangladesh, close to the birth place of Madhusudan Dutt, widely regarded as the Milton of Bengal. It was the best of times and the worst… The British had by now perfected their role as masters and British values permeated the Indian upper classes to the very last detail like table manners. That of course, was not the worst of the British influence. What was far more demeaning to the educated Indians – and there were several – was the fact that senior government positions were closed to them. Being forfeited of one’s right in one’s land of birth would become the rallying point for the Indian intelligentsia in the years to come. Ray’s father Harish Chandra Ray, a man of learning and taste, was closely associated with the cultural and intellectual leaders of the time and exerted great influence on his son. Ray had his early schooling in the village school founded by his father but soon his father shifted to Calcutta and at the age of nine, little Prafulla set eyes for the first time, on the bustling city that would be his home for many years to come. He was filled with wonder at the ever-changing sights and sounds – the city seemed to change moods ever so often! His formal schooling was interrupted due to illness but that did not affect his education. 
+</p>
+  		<h3>Question9 :</h3> 
+  		<hr>
+  		<p>	Prafulla Chandra’s illness could not stop his                                          </p> 
+	<div>
+		<input type="radio" name="49" value="a"> A. Schooling   <br>
+		<input type="radio" name="49" value="b"> B. learning <br>
+		<input type="radio" name="49" value="c"> C. routine  <br>
+		<input type="radio" name="49" value="d"> D. sportsman spirit  <br>
+    <input type="radio" name="49" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="c10" class="container questions"> 
+  	<p><h3>COMPREHENSION</h3> 
+Read the following passage carefully and answer the questions that follow- 
+Prafulla Chandra Ray was born on 2 August 1861 in the district of Jessore, now in Bangladesh, close to the birth place of Madhusudan Dutt, widely regarded as the Milton of Bengal. It was the best of times and the worst… The British had by now perfected their role as masters and British values permeated the Indian upper classes to the very last detail like table manners. That of course, was not the worst of the British influence. What was far more demeaning to the educated Indians – and there were several – was the fact that senior government positions were closed to them. Being forfeited of one’s right in one’s land of birth would become the rallying point for the Indian intelligentsia in the years to come. Ray’s father Harish Chandra Ray, a man of learning and taste, was closely associated with the cultural and intellectual leaders of the time and exerted great influence on his son. Ray had his early schooling in the village school founded by his father but soon his father shifted to Calcutta and at the age of nine, little Prafulla set eyes for the first time, on the bustling city that would be his home for many years to come. He was filled with wonder at the ever-changing sights and sounds – the city seemed to change moods ever so often! His formal schooling was interrupted due to illness but that did not affect his education. 
+</p>
+  		<h3>Question10 :</h3> 
+  		<hr>
+  		<p>)‘Intelligentsia’ here means </p> 
+	<div>
+		<input type="radio" name="50" value="a"> A. intelligent animals <br>
+		<input type="radio" name="50" value="b"> B. Intel television    <br>
+		<input type="radio" name="50" value="c"> C. intelligent people  <br>
+		<input type="radio" name="50" value="d"> D. a special detergent <br>
+    <input type="radio" name="50" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+</div>
+<div id="c11" class="container questions"> 
+      <h3>Question16 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="56" value="a"> A. Option A <br>
+    <input type="radio" name="56" value="b"> B. Option A <br>
+    <input type="radio" name="56" value="c"> C. Option A <br>
+    <input type="radio" name="56" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+</div>
+ <div id="c12" class="container questions"> 
+      <h3>Question16 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="56" value="a"> A. Option A <br>
+    <input type="radio" name="56" value="b"> B. Option A <br>
+    <input type="radio" name="56" value="c"> C. Option A <br>
+    <input type="radio" name="56" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+</div> 
+<div id="c13" class="container questions"> 
+      <h3>Question16 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="56" value="a"> A. Option A <br>
+    <input type="radio" name="56" value="b"> B. Option A <br>
+    <input type="radio" name="56" value="c"> C. Option A <br>
+    <input type="radio" name="56" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+</div> 
+<div id="c14" class="container questions"> 
+      <h3>Question16 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="56" value="a"> A. Option A <br>
+    <input type="radio" name="56" value="b"> B. Option A <br>
+    <input type="radio" name="56" value="c"> C. Option A <br>
+    <input type="radio" name="56" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+</div>
+ <div id="c15" class="container questions"> 
+      <h3>Question16 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="56" value="a"> A. Option A <br>
+    <input type="radio" name="56" value="b"> B. Option A <br>
+    <input type="radio" name="56" value="c"> C. Option A <br>
+    <input type="radio" name="56" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div> 
+  </div>
+   <div id="c16" class="container questions"> 
+      <h3>Question16 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="56" value="a"> A. Option A <br>
+    <input type="radio" name="56" value="b"> B. Option A <br>
+    <input type="radio" name="56" value="c"> C. Option A <br>
+    <input type="radio" name="56" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+  <div id="c17" class="container questions"> 
+      <h3>Question17 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="57" value="a"> A. Option A <br>
+    <input type="radio" name="57" value="b"> B. Option A <br>
+    <input type="radio" name="57" value="c"> C. Option A <br>
+    <input type="radio" name="57" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+  <div id="c18" class="container questions"> 
+      <h3>Question18 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="58" value="a"> A. Option A <br>
+    <input type="radio" name="58" value="b"> B. Option A <br>
+    <input type="radio" name="58" value="c"> C. Option A <br>
+    <input type="radio" name="58" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+  <div id="c19" class="container questions"> 
+      <h3>Question19 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="59" value="a"> A. Option A <br>
+    <input type="radio" name="59" value="b"> B. Option A <br>
+    <input type="radio" name="59" value="c"> C. Option A <br>
+    <input type="radio" name="59" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+  </div>
+  </div>
+  <div id="c20" class="container questions"> 
+      <h3>Question20 :</h3> 
+      <hr>
+      <p> Question to be placed </p> 
+  <div>
+    <input type="radio" name="60" value="a"> A. Option A <br>
+    <input type="radio" name="60" value="b"> B. Option A <br>
+    <input type="radio" name="60" value="c"> C. Option A <br>
+    <input type="radio" name="60" value="d"> D. Option A <br>
+
+     <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+    </div>
+  </div>
+  </div>
+ </div>
+</div>
+<hr>
+<button type="submit" class="btn btn-danger endtest"  >End Test</button>
+</div>
+ <!-- Question Display -->
+  <!-- Content Area -->
+</form>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+ 
+      secs=7200;
+
+    timer=setInterval(function(){
+      var element =document.getElementById("timer");
+      element.innerHTML="you have "+secs+" secs to ans";
+      if(secs<600)alert("10 minutes remaining for exam completion!");
+      if(secs<1){
+        clearInterval(timer);
+        document.getElementById('questions').submit();
+        
+      }
+      secs--;
+    },1000)
+
+
+  function pbutton(){
+    document.getElementById("mbuttons").style.display = "none";
+    document.getElementById("pbuttons").style.display = "grid";
+    document.getElementById("cbuttons").style.display = "none";
+    
+
+
+  }
+  function mbutton(){
+    document.getElementById("mbuttons").style.display = "grid";
+    document.getElementById("pbuttons").style.display = "none";
+    document.getElementById("cbuttons").style.display = "none";
+    
+
+  }
+  function cbutton(){
+    document.getElementById("mbuttons").style.display = "none";
+    document.getElementById("pbuttons").style.display = "none";
+    document.getElementById("cbuttons").style.display = "grid";
+    
+  }
+  function ibutton(){
+    document.getElementById("mbuttons").style.display = "none";
+    document.getElementById("pbuttons").style.display = "none";
+    document.getElementById("cbuttons").style.display = "none";
+    document.getElementById("instruct").style.display = "block";
+    
+  }
+
+  function phyfun(id)
+  {
+    for(var i = 1 ; i<=20 ; i++)
+    {   
+      if(i == id)
+        continue ;
+
+      else
+      {
+      var xid = 'p'.concat(i);
+      var state = document.getElementById(xid).style.display;
+      if(state == 'block')
+      {
+        document.getElementById(xid).style.display = "none";
+      }
+      }
+    }
+    var phy = 'p'.concat(id);
+    document.getElementById(phy).style.display = "block";
+    document.getElementById(id).style.color = "orange";
+    
+  }
+function matfun(id)
+  {
+    for(var i = 21 ; i<=40 ; i++)
+    {   
+      if(i == id)
+        continue ;
+
+      else
+      {
+      var xid = 'm'.concat(i-20);
+      var state = document.getElementById(xid).style.display;
+      if(state == 'block')
+      {
+        document.getElementById(xid).style.display = "none";
+      }
+      }
+    }
+    var phy = 'm'.concat(id-20);
+    document.getElementById(phy).style.display = "block";
+    document.getElementById(id).style.color = "orange";
+    
+  }
+  function chfun(id)
+  {
+    for(var i = 41 ; i<=60 ; i++)
+    {   
+      if(i == id)
+        continue ;
+
+      else
+      {
+      var xid = 'c'.concat(i-40);
+      var state = document.getElementById(xid).style.display;
+      if(state == 'block')
+      {
+        document.getElementById(xid).style.display = "none";
+      }
+      }
+    }
+    var phy = 'c'.concat(id-40);
+    document.getElementById(phy).style.display = "block";
+    document.getElementById(id).style.color = "orange";
+    
+  }
+  
+
+  
+  </script>
+</body>
+</html>

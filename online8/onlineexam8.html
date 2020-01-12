@@ -1,0 +1,989 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Online Exam</title>
+
+	<!-- Links -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	
+    <!-- Links -->
+
+    <style type="text/css">
+    	hr{
+    		color: solidblack;
+    	}
+
+    /*	div .menu{
+    		border-right: 1px  solid black;
+
+
+    		 
+    	}*/
+    	.timer{
+    		height: 50px;
+    		background-color: grey;
+    		
+    	}
+    	.header{
+    		height: 50px;
+    		background-color: rgb(212,202,74);
+
+    	}
+    	.username{
+    		height: 50px;
+    		background-color: rgb(68,135,88);
+
+    	}
+    	.questionstab{
+    		
+    		height: 600px;
+          box-shadow: 5px 5px;
+    	}
+    	div .questionstab{
+    		border : 1px solid black;
+    		border-radius: 6px;
+    	}
+    	.qnav{
+    		
+    	}
+    	.endtest{
+    		position: relative;
+    		left: 75vw;
+    	}
+    	 
+    	
+    	#pbuttons{
+    		display: grid;
+			grid-template-columns: repeat(4,1fr);
+            border: 1px solid blue;
+            border-radius: 4px;
+    	}
+    	#pbuttons div{
+    		margin-left: 5px;
+    		margin-bottom: 5px;
+    	}
+    	#cbuttons{
+    		
+    		display: none;
+    		grid-template-columns: repeat(4,1fr);
+            border: 1px solid blue;
+             border-radius: 4px;
+    	}
+    	#cbuttons div{
+    		margin-left: 5px;
+    		margin-bottom: 5px;
+
+    	}
+    	#mbuttons{
+    		
+    		display: none;
+    		grid-template-columns: repeat(4,1fr);
+            border: 1px solid blue;
+            border-radius: 4px;
+    	}
+    	#mbuttons div{
+    		margin-left: 5px;
+    		margin-bottom: 5px;
+
+
+    	}
+    	.questions{
+    		display: none;
+    	}
+      table,th,td{
+        border: 1px solid black;
+      }
+      #offsetter{
+          display: none;
+      }
+
+
+    	
+        
+    </style>
+    
+</head>
+<body>
+<div class="poppup">
+	<div class="row">
+	
+  
+   <!-- Menu -->
+	<div class="col-md-2 menu">
+	
+	<div class="timer" id="timer">
+		<h4>Timer </h4>
+	</div>
+	<hr >
+	<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    
+  <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false" onclick="pbutton()">Mathematics</a>
+  <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false" onclick="mbutton()">Mental ability</a>
+
+ 	
+  </div>
+ 	<hr>
+  <!------------instructions--------->
+  
+
+ 	<!-- For buttons -->
+ <div id="pbuttons">
+ <div><button type="button" id="1"  onclick="phyfun(1)">01</button></div>
+ <div><button type="button" id="2"  onclick="phyfun(2)">02</button></div>
+ <div><button type="button" id="3"  onclick="phyfun(3)">03</button></div>
+ <div><button type="button" id="4"  onclick="phyfun(4)">04</button></div> 
+ <div><button type="button" id="5"  onclick="phyfun(5)">05</button></div>
+ <div><button type="button" id="6"  onclick="phyfun(6)">06</button></div>
+ <div><button type="button" id="7"  onclick="phyfun(7)">07</button></div>
+ <div><button type="button" id="8"  onclick="phyfun(8)">08</button></div>
+ <div><button type="button" id="9"  onclick="phyfun(9)">09</button></div>
+ <div><button type="button" id="10" onclick="phyfun(10)">10</button></div>
+ <div><button type="button" id="11" onclick="phyfun(11)">11</button></div>
+ <div><button type="button" id="12" onclick="phyfun(12)">12</button></div> 
+ <div><button type="button" id="13" onclick="phyfun(13)">13</button></div>
+ <div><button type="button" id="14" onclick="phyfun(14)">14</button></div>
+ <div><button type="button" id="15" onclick="phyfun(15)">15</button></div>
+ <div><button type="button" id="16" onclick="phyfun(16)">16</button></div>
+ <div><button type="button" id="17" onclick="phyfun(17)">17</button></div>
+ <div><button type="button" id="18" onclick="phyfun(18)">18</button></div>
+ <div><button type="button" id="19" onclick="phyfun(19)">19</button></div>
+ <div><button type="button" id="20" onclick="phyfun(20)">20</button></div>
+</div>
+
+<div id="mbuttons">
+ <div><button type="button" id="21"  onclick="matfun(21)">21</button></div>
+ <div><button type="button" id="22"  onclick="matfun(22)">22</button></div>
+ <div><button type="button" id="23"  onclick="matfun(23)">23</button></div>
+ <div><button type="button" id="24"  onclick="matfun(24)">24</button></div> 
+ <div><button type="button" id="25"  onclick="matfun(25)">25</button></div>
+ <div><button type="button" id="26"  onclick="matfun(26)">26</button></div>
+ <div><button type="button" id="27"  onclick="matfun(27)">27</button></div>
+ <div><button type="button" id="28"  onclick="matfun(28)">28</button></div>
+ <div><button type="button" id="29"  onclick="matfun(29)">29</button></div>
+ <div><button type="button" id="30"  onclick="matfun(30)">30</button></div>
+ <div><button type="button" id="31"  onclick="matfun(31)">31</button></div>
+ <div><button type="button" id="32"  onclick="matfun(32)">32</button></div> 
+ <div><button type="button" id="33"  onclick="matfun(33)">33</button></div>
+ <div><button type="button" id="34"  onclick="matfun(34)">34</button></div>
+ <div><button type="button" id="35"  onclick="matfun(35)">35</button></div>
+ <div><button type="button" id="36"  onclick="matfun(36)">36</button></div>
+ <div><button type="button" id="37"  onclick="matfun(37)">37</button></div>
+ <div><button type="button" id="38"  onclick="matfun(38)">38</button></div>
+ <div><button type="button" id="39"  onclick="matfun(39)">39</button></div>
+ <div><button type="button" id="40"  onclick="matfun(40)">40</button></div>
+</div>
+
+<!-- For buttons -->
+
+	</div>
+
+	<!-- Menu -->
+
+
+   <!-- Content Area -->
+  
+	<div class="col-md-10">
+		 
+<!-- Header Section -->
+		 <div class="row ">
+		 	<div class="col-md-9 header">
+		 		<h2>Q-Wissenaire </h2>
+		 	</div>
+		 	<div class="col-md-3 username">
+		 		<h4> VIIIth Class </h4>
+		 	</div>
+   		 </div>
+   <hr >
+  <!-- Header Section -->
+  
+  <!-- Question Display -->
+  <div class="questionstab">
+<div class="tab-content qnav" id="v-pills-tabContent">
+<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" >
+  <form id="questions" action="ans8.php" method="POST">
+  	<div id="p1" class="container questions"> 
+  		<h3>Question1 :</h3> 
+  		<hr>
+  		<p> 200kg of sugar was purchased at the rate of Rs 15 per kg and sold at a profit of 5%.Compute the selling price per kg. </p> 
+	<div>
+	
+		<input type="radio" name="1" value="a"> A. Rs 18.25 <br>
+		<input type="radio" name="1" value="b"> B. Rs 13.85<br>
+		<input type="radio" name="1" value="c"> C. Rs 15.75 <br>
+		<input type="radio" name="1" value="d"> D. Rs 31.50<br>
+    <input type="radio" name="1" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+		
+	</div>
+  </div>
+
+    <div id="p2" class="container questions"> 
+  		<h3>Question2 :</h3> 
+  		
+  		<hr>
+  		<p>Find the sum to 10 terms of the series 3*1^2+5*2^2+7*3^2+------------   </p> 
+	<div>
+	
+		<input type="radio" name="2" value="a"> A. 6435 <br>
+		<input type="radio" name="2" value="b"> B. 2100 <br>
+		<input type="radio" name="2" value="c"> C. 6068 <br>
+		<input type="radio" name="2" value="d"> D. 5537 <br>
+    <input type="radio" name="2" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p3" class="container questions"> 
+  		<h3>Question3 :</h3> 
+  		<hr>
+  		<p>If one Arithmetic Mean A and two Geometric Means p and q are inserted between two numbers 
+then p2/q + q2/p in terms of A is </p> 
+	<div>
+		<input type="radio" name="3" value="a"> A. A<br>
+		<input type="radio" name="3" value="b"> B. 2A<br>
+		<input type="radio" name="3" value="c"> C. 3A<br>
+		<input type="radio" name="3" value="d"> D. 0.5A<br>
+    <input type="radio" name="3" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p4" class="container questions"> 
+  		<h3>Question4 :</h3> 
+  		<hr>
+  		<p>(1+sinx-cosx)/(1+sinx+cosx) =</p> 
+	<div>
+	
+		<input type="radio" name="4" value="a"> A.Tan2x<br>
+		<input type="radio" name="4" value="b"> B.2tanx<br>
+		<input type="radio" name="4" value="c"> C.cot2x<br>
+		<input type="radio" name="4" value="d"> D.tanx/2<br>
+    <input type="radio" name="4" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p5" class="container questions"> 
+  		<h3>Question5 :</h3> 
+  		<hr>
+  		<p>x^2 -2x+10 has a minimum at x= </p> 
+	<div>
+	
+		<input type="radio" name="5" value="a"> A. 1<br>
+		<input type="radio" name="5" value="b"> B. 2<br>
+		<input type="radio" name="5" value="c"> C. 7<br>
+		<input type="radio" name="5" value="d"> D. 5<br>
+    <input type="radio" name="5" value="e" id="offsetter" checked="checked">
+
+		<button type="reset" class="btn btn-info clear" id="clear" > Clear </button>
+	</div>
+  </div>
+  <div id="p6" class="container questions"> 
+  		<h3>Question6 :</h3> 
+  		<hr>
+  		<p>In a .ABC, M and N are the mid points of AB and AC . P and Q are the midpoints of AM and AN. If 
+PQ = 1.6cm, then BC = ? </p> 
+	<div>
+	
+		<input type="radio" name="6" value="a"> A. 4.8cm<br>
+		<input type="radio" name="6" value="b"> B. 3.2cm<br>
+		<input type="radio" name="6" value="c"> C. 6.4cm<br>
+		<input type="radio" name="6" value="d"> D. 5.4cm<br>
+    <input type="radio" name="6" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p7" class="container questions"> 
+  		<h3>Question7 :</h3> 
+  		<hr>
+  		<p>Find the missing X in the number 12531X so that the number becomes a perfect square.</p> 
+	<div>
+	
+		<input type="radio" name="7" value="a"> A. 2<br>
+		<input type="radio" name="7" value="b"> B. 6<br>
+		<input type="radio" name="7" value="c"> C. 8<br>
+		<input type="radio" name="7" value="d"> D. 0<br>
+    <input type="radio" name="7" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p8" class="container questions"> 
+  		<h3>Question8 :</h3> 
+  		<hr>
+  		<p>The degree measure of angle A is ? <br>
+        <img src="mathsq8.png" style="width: 200px; height: 200px"></p> 
+	<div>
+	
+		<input type="radio" name="8" value="a"> A. 40<br>
+		<input type="radio" name="8" value="b"> B. 70<br>
+		<input type="radio" name="8" value="c"> C. 35<br>
+		<input type="radio" name="8" value="d"> D. 30<br>
+    <input type="radio" name="8" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p9" class="container questions"> 
+  		<h3>Question9 :</h3> 
+  		<hr>
+  		<p>If f(x)=ax+b and f= {(1,1),(2,3),(3,5),(4,7)} then the values of a and b. respectively are 
+</p> 
+	<div>
+	
+		<input type="radio" name="9" value="a"> A. 2,-1<br>
+		<input type="radio" name="9" value="b"> B. -2,1<br>
+		<input type="radio" name="9" value="c"> C. 3,-1<br>
+		<input type="radio" name="9" value="d"> D. -2,-1<br>
+    <input type="radio" name="9" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p10" class="container questions"> 
+  		<h3>Question10 :</h3> 
+  		<hr>
+  		<p>A metallic sphere of radius 3 cm is melted and recast into some spherical balls of radius 0.6 cm. 
+The number of balls that can be made out of it is: </p> 
+	<div>
+	
+		<input type="radio" name="10" value="a"> A. 90<br>
+		<input type="radio" name="10" value="b"> B. 95<br>
+		<input type="radio" name="10" value="c"> C. 100<br>
+		<input type="radio" name="10" value="d"> D. 125<br>
+    <input type="radio" name="10" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p11" class="container questions"> 
+  		<h3>Question11 :</h3> 
+  		<hr>
+  		<p>Three numbers are in the ratio 2 : 3 : 4. The sum of their cubes is 33957. Find the largest number.</p> 
+	<div>
+	
+		<input type="radio" name="11" value="a"> A. 28<br>
+		<input type="radio" name="11" value="b"> B. 21<br>
+		<input type="radio" name="11" value="c"> C. 32<br>
+		<input type="radio" name="11" value="d"> D. 14<br>
+    <input type="radio" name="11" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p12" class="container questions"> 
+  		<h3>Question12 :</h3> 
+  		<hr>
+  		<p>The area of the tringle formed by 2x + 7y = 14 and the coordinate axes is </p> 
+	<div>
+	
+		<input type="radio" name="12" value="a"> A. 6sq.units<br>
+		<input type="radio" name="12" value="b"> B. 7sq.units<br>
+		<input type="radio" name="12" value="c"> C. 8sq.units<br>
+		<input type="radio" name="12" value="d"> D. 14sq.units<br>
+    <input type="radio" name="12" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p13" class="container questions"> 
+  		<h3>Question13 :</h3> 
+  		<hr>
+  		<p>Consider three distinct positive integers a, b, c all less than 100. If |a - b| + |b - c| = |c-a|, what is 
+the maximum value possible for b?</p> 
+	<div>
+	
+		<input type="radio" name="13" value="a"> A. 98<br>
+		<input type="radio" name="13" value="b"> B. 99<br>
+		<input type="radio" name="13" value="c"> C. 89<br>
+		<input type="radio" name="13" value="d"> D. 88<br>
+    <input type="radio" name="13" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p14" class="container questions"> 
+  		<h3>Question14 :</h3> 
+  		<hr>
+  		<p>Sn=1-2+3-4+5 up to n terms. Find S2004+S2005+S2006. </p> 
+	<div>
+	
+		<input type="radio" name="14" value="a"> A. 2004<br>
+		<input type="radio" name="14" value="b"> B. -2004<br>
+		<input type="radio" name="14" value="c"> C. -1002<br>
+		<input type="radio" name="14" value="d"> D. NOT<br>
+    <input type="radio" name="14" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p15" class="container questions"> 
+  		<h3>Question15 :</h3> 
+  		<hr>
+  		<p>The sum of a two digit number and the number formed by interchanging its digit is 110. If 10 is 
+subtracted from the first number, the new number is 4 more than 5 times the sum of its digits in the 
+first number. Find the first number.</p> 
+	<div>
+	
+		<input type="radio" name="15" value="a"> A. 63<br>
+		<input type="radio" name="15" value="b"> B. 46<br>
+		<input type="radio" name="15" value="c"> C. 64<br>
+		<input type="radio" name="15" value="d"> D. NOT<br>
+    <input type="radio" name="15" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p16" class="container questions"> 
+  		<h3>Question16 :</h3> 
+  		<hr>
+  		<p>If x = (3^1/2 + 2^1/2)/(3^1/2 - 2^1/2) & y = 1/x then x^1/2 +y^1/2= </p> 
+	<div>
+	
+		<input type="radio" name="16" value="a"> A. 3^1/2<br>
+		<input type="radio" name="16" value="b"> B. 2^1/2<br>
+		<input type="radio" name="16" value="c"> C. 2*(3)^1/2<br>
+		<input type="radio" name="16" value="d"> D. 3*(2)<br>
+    <input type="radio" name="16" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p17" class="container questions"> 
+  		<h3>Question17 :</h3> 
+  		<hr>
+  		<p>The value of p when 4804*9p2 is divisible by 12 is </p> 
+	<div>
+	
+		<input type="radio" name="17" value="a"> A. 2<br>
+		<input type="radio" name="17" value="b"> B. 5<br>
+		<input type="radio" name="17" value="c"> C. 8<br>
+		<input type="radio" name="17" value="d"> D. none<br>
+    <input type="radio" name="17" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p18" class="container questions"> 
+  		<h3>Question18 :</h3> 
+  		<hr>
+  		<p>The last digit of the expression 12+22+32+.....+1002 is</p> 
+	<div>
+	
+		<input type="radio" name="18" value="a"> A. 1<br>
+		<input type="radio" name="18" value="b"> B. 0<br>
+		<input type="radio" name="18" value="c"> C. 2<br>
+		<input type="radio" name="18" value="d"> D. 4<br>
+    <input type="radio" name="18" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p19" class="container questions"> 
+  		<h3>Question19 :</h3> 
+  		<hr>
+  		<p>Find the number of values of k, for which the system of equations,(k+1)x+8y=4k; kx+(k+3)y=3k-1 has no solution </p> 
+	<div>
+	
+		<input type="radio" name="19" value="a"> A. 1<br>
+		<input type="radio" name="19" value="b"> B. 2<br>
+		<input type="radio" name="19" value="c"> C. 3<br>
+		<input type="radio" name="19" value="d"> D. 4<br>
+    <input type="radio" name="19" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="p20" class="container questions"> 
+  		<h3>Question20 :</h3> 
+  		<hr>
+  		<p>Two pipes A and B can fill a tank in 16 hours and 20 hours respectively. If both the pipes are 
+opened simultaneously, how much time will be taken to fill the tank? </p> 
+	<div>
+	
+		<input type="radio" name="20" value="a"> A. 48/5 hours<br>
+		<input type="radio" name="20" value="b"> B. 79/9 hours<br>
+		<input type="radio" name="20" value="c"> C. 89/9 hours<br>
+		<input type="radio" name="20" value="d"> D. 80/9 hours<br>
+    <input type="radio" name="20" value="e" id="offsetter" checked="checked">
+
+		 
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+
+  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+  	<div id="m1" class="container questions"> 
+  		<h3>Question 1 :</h3> 
+  		<hr>
+  		<p>In a certain language "FORGET" means "DPPHCU". How would "DOCTOR" be written in that code? </p> 
+	<div>
+		<input type="radio" name="21" value="a"> A. BPAUPS<br>
+		<input type="radio" name="21" value="b"> B. EMDRPP<br>
+		<input type="radio" name="21" value="c"> C. BPAUMS<br>
+		<input type="radio" name="21" value="d"> D. BRARPP<br>
+    <input type="radio" name="21" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m2" class="container questions"> 
+  		<h3>Question 2 :</h3> 
+  		<hr>
+  		<p>In the following four words, three are alike in some way while the fourth differs from the rest, 
+IDENTIFY THAT WORD.</p> 
+	<div>
+	
+		<input type="radio" name="22" value="a"> A. HALDIGHATI<br>
+		<input type="radio" name="22" value="b"> B. PLASSEY<br>
+		<input type="radio" name="22" value="c"> C. PANIPAT<br>
+		<input type="radio" name="22" value="d"> D. SHIRDI<br>
+    <input type="radio" name="22" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+		
+	</div>
+  </div>
+  <div id="m3" class="container questions"> 
+  		<h3>Question3 :</h3> 
+  		<hr>
+  		<p>200,80,56,50,48,?</p> 
+	<div>
+		<input type="radio" name="23" value="a"> A. 45<br>
+		<input type="radio" name="23" value="b"> B. 43<br>
+		<input type="radio" name="23" value="c"> C. 47<br>
+		<input type="radio" name="23" value="d"> D. 44<br>
+    <input type="radio" name="23" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m4" class="container questions"> 
+  		<h3>Question4 :</h3> 
+  		<hr>
+  		<p>In the following question , a matrix of certin characters is given .These characters follow a certain trend . Find out this trend and choose the missing character accordingly.<br>
+      <table>
+        <tr>
+          <td>2</td>
+          <td>7</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>1</td>
+          <td>5</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>14</td>
+          <td>?</td>
+        </tr>
+      </table> 
+    </p> 
+	<div>
+		<input type="radio" name="24" value="a"> A. 16<br>
+		<input type="radio" name="24" value="b"> B. 17<br>
+		<input type="radio" name="24" value="c"> C. 18<br>
+		<input type="radio" name="24" value="d"> D. 19<br>
+    <input type="radio" name="24" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m5" class="container questions"> 
+  		<h3>Question5 :</h3> 
+  		<hr>
+  		<p>Which set of letters completes the 1st pair in the same way as the 2nd pair? 
+        <br>
+      ?:QEHMDF::WIDELY:HVCDXK</p> 
+	<div>
+		<input type="radio" name="25" value="a"> A. FRINGE<br>
+		<input type="radio" name="25" value="b"> B. SRING<br>
+		<input type="radio" name="25" value="c"> C. FRANCE<br>
+		<input type="radio" name="25" value="d"> D. DEMAND<br>
+    <input type="radio" name="25" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m6" class="container questions"> 
+  		<h3>Question6 :</h3> 
+  		<hr>
+  		<p>All the components of a geometrical figure are shown in figure . Identify this geometrical figure from amongst the four options. <img src="question6.png" style="width: 50px;height: 50px"></p> 
+	<div>
+		<input type="radio" name="26" value="a"> A. <img src="optionA.png"style="width:50px;height:50px"> <br>
+		<input type="radio" name="26" value="b"> B. <img src="optionB.png"style="width:50px;height:50px"><br>
+		<input type="radio" name="26" value="c"> C. <img src="optionC.png"style="width:50px;height:50px"><br>
+		<input type="radio" name="26" value="d"> D. <img src="optionD.png"style="width:50px;height:50px"><br>
+    <input type="radio" name="26" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m7" class="container questions"> 
+  		<h3>Question7 :</h3> 
+  		<hr>
+  		<p>Find the letter according to the pattern A , I , Q , __</p> 
+	<div>
+		<input type="radio" name="27" value="a"> A. E<br>
+		<input type="radio" name="27" value="b"> B. U<br>
+		<input type="radio" name="27" value="c"> C. X<br>
+		<input type="radio" name="27" value="d"> D. Y<br>
+    <input type="radio" name="27" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m8" class="container questions"> 
+  		<h3>Question8 :</h3> 
+  		<hr>
+  		<p>A is B’s sister . C is B’s mother . D is C’s father . E is D’s mother . Then, how is A related to D?</p> 
+	<div>
+		<input type="radio" name="28" value="a"> A. Grandfather<br>
+		<input type="radio" name="28" value="b"> B. Grandmother<br>
+		<input type="radio" name="28" value="c"> C. Daughter<br>
+		<input type="radio" name="28" value="d"> D. Granddaughter<br>
+    <input type="radio" name="28" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m9" class="container questions"> 
+  		<h3>Question9 :</h3> 
+  		<hr>
+  		<p>Introducing a man, a woman said, “his wife is the only daughter of my father.” How is that man 
+related to the woman ?</p> 
+	<div>
+		<input type="radio" name="29" value="a"> A. brother<br>
+		<input type="radio" name="29" value="b"> B. father-in-law<br>
+		<input type="radio" name="29" value="c"> C. maternal uncle<br>
+		<input type="radio" name="29" value="d"> D. husband<br>
+    <input type="radio" name="29" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m10" class="container questions"> 
+  		<h3>Question10 :</h3> 
+  		<hr>
+  		<p>Vikas is performing yoga with his head down and legs up. His face is towards the west. In which 
+direction, will his left hand be?</p> 
+	<div>
+		<input type="radio" name="30" value="a"> A. north<br>
+		<input type="radio" name="30" value="b"> B. north-east<br>
+		<input type="radio" name="30" value="c"> C. east<br>
+		<input type="radio" name="30" value="d"> D. west<br>
+    <input type="radio" name="30" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m11" class="container questions"> 
+  		<h3>Question11 :</h3> 
+  		<hr>
+  		<p>If ROSE is coded as 6821, CHAIR is coded as 73456 and PREACH is coded as 961473, what will be the code for SEARCH?</p> 
+	<div>
+		<input type="radio" name="31" value="a"> A. 246173<br>
+		<input type="radio" name="31" value="b"> B. 214673<br>
+		<input type="radio" name="31" value="c"> C. 214763<br>
+		<input type="radio" name="31" value="d"> D. 216473<br>
+    <input type="radio" name="31" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m12" class="container questions"> 
+  		<h3>Question12 :</h3> 
+  		<hr>
+  		<p>What comes next? 
+        <br>
+        7,26,63,124,245,342, ? 
+</p> 
+	<div>
+		<input type="radio" name="32" value="a"> A. 511<br>
+		<input type="radio" name="32" value="b"> B. 512<br>
+		<input type="radio" name="32" value="c"> C. 513<br>
+		<input type="radio" name="32" value="d"> D. 521<br>
+    <input type="radio" name="32" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m13" class="container questions"> 
+  		<h3>Question13 :</h3> 
+  		<hr>
+  		<p>Ramu asks raju,if a giraffe has two eyes,a monkey has 2 eyes and an elephant has 2 eyes then how many eyes do we have? </p> 
+	<div>
+		<input type="radio" name="33" value="a"> A. 3<br>
+		<input type="radio" name="33" value="b"> B. 4<br>
+		<input type="radio" name="33" value="c"> C. 10<br>
+		<input type="radio" name="33" value="d"> D. 8<br>
+    <input type="radio" name="33" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m14" class="container questions"> 
+  		<h3>Question14 :</h3> 
+  		<hr>
+  		<p>Three of the letters are alike in the same way but the forth one isn’t.Find the fourth one.</p> 
+	<div>
+		<input type="radio" name="34" value="a"> A. ira<br>
+		<input type="radio" name="34" value="b"> B. kas<br>
+		<input type="radio" name="34" value="c"> C. btd<br>
+		<input type="radio" name="34" value="d"> D. anm<br>
+    <input type="radio" name="34" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m15" class="container questions"> 
+  		<h3>Question15 :</h3> 
+  		<hr>
+  		<p>
+      Find the missing number. 
+      <br>
+      <table>
+        <tr>
+          <td>6</td>
+          <td>18</td>
+          <td>15</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>2</td>
+          <td>5</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>3</td>
+          <td>?</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>27</td>
+          <td>9</td>
+        </tr>
+      </table>  
+      </p> 
+	<div>
+		<input type="radio" name="35" value="a"> A. 11<br>
+		<input type="radio" name="35" value="b"> B. 6<br>
+		<input type="radio" name="35" value="c"> C. 3<br>
+		<input type="radio" name="35" value="d"> D. 2<br>
+    <input type="radio" name="35" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m16" class="container questions"> 
+  		<h3>Question16 :</h3> 
+  		<hr>
+  		<p>One term is wrong. Select the answer from the given options. <br>
+      24576 , 6144 , 1536 , 386 , 96 , 24 </p> 
+	<div>
+		<input type="radio" name="36" value="a"> A. 386<br>
+		<input type="radio" name="36" value="b"> B. 6144<br>
+		<input type="radio" name="36" value="c"> C. 96<br>
+		<input type="radio" name="36" value="d"> D. 1536<br>
+    <input type="radio" name="36" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m17" class="container questions"> 
+  		<h3>Question17 :</h3> 
+  		<hr>
+  		<p>Find the missing term : 1 , 3 , 7 , 15 , 31 , (...) </p> 
+	<div>
+		<input type="radio" name="37" value="a"> A. 38<br>
+		<input type="radio" name="37" value="b"> B. 49<br>
+		<input type="radio" name="37" value="c"> C. 63<br>
+		<input type="radio" name="37" value="d"> D. 42<br>
+    <input type="radio" name="37" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m18" class="container questions"> 
+  		<h3>Question18 :</h3> 
+  		<hr>
+  		<p>In certain code SAND is VDQG and BIRD is ELUG, 
+          then what is code for LOVE</p> 
+	<div>
+		<input type="radio" name="38" value="a"> A. PRYG<br>
+		<input type="radio" name="38" value="b"> B. ORTG<br>
+		<input type="radio" name="38" value="c"> C. NPUH<br>
+		<input type="radio" name="38" value="d"> D. ORYH<br>
+    <input type="radio" name="38" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m19" class="container questions"> 
+  		<h3>Question19 :</h3> 
+  		<hr>
+  		<p>Rohith is 40m south-west of Aarav. Ansh is 40m south-east of Aarav.Then Ansh is in which direction of Rohith?</p> 
+	<div>
+		<input type="radio" name="39" value="a"> A. East<br>
+		<input type="radio" name="39" value="b"> B. West<br>
+		<input type="radio" name="39" value="c"> C. North-East<br>
+		<input type="radio" name="39" value="d"> D. South<br>
+    <input type="radio" name="39" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  <div id="m20" class="container questions"> 
+  		<h3>Question20 :</h3> 
+  		<hr>
+  		<p>Find the wrong term in the series 24,27,31,33,36 </p> 
+	<div>
+		<input type="radio" name="40" value="a"> A. 24<br>
+		<input type="radio" name="40" value="b"> B. 27<br>
+		<input type="radio" name="40" value="c"> C. 31<br>
+		<input type="radio" name="40" value="d"> D. 33<br>
+    <input type="radio" name="40" value="e" id="offsetter" checked="checked">
+
+		 <button type="reset" class="btn btn-info clear" id="clear" >Clear </button>
+	</div>
+  </div>
+  </div>
+   
+  </div>
+ </div>
+</div>
+<hr>
+<button type="submit" class="btn btn-danger endtest"  >End Test</button>
+</div>
+ <!-- Question Display -->
+  <!-- Content Area -->
+</form>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+ 
+      secs=100;
+
+    timer=setInterval(function(){
+      var element =document.getElementById("timer");
+      element.innerHTML="you have "+secs+"to ans";
+      if(secs<1){
+        clearInterval(timer);
+        document.getElementById('questions').submit();
+        alert("Thanks for writing the exam");
+      }
+      secs--;
+    },1000)
+
+
+	function pbutton(){
+		document.getElementById("mbuttons").style.display = "none";
+		document.getElementById("pbuttons").style.display = "grid";
+		document.getElementById("cbuttons").style.display = "none";
+		
+
+
+	}
+	function mbutton(){
+		document.getElementById("mbuttons").style.display = "grid";
+		document.getElementById("pbuttons").style.display = "none";
+		document.getElementById("cbuttons").style.display = "none";
+		
+
+	}
+	function cbutton(){
+		document.getElementById("mbuttons").style.display = "none";
+		document.getElementById("pbuttons").style.display = "none";
+		document.getElementById("cbuttons").style.display = "grid";
+		
+	}
+  function ibutton(){
+    document.getElementById("mbuttons").style.display = "none";
+    document.getElementById("pbuttons").style.display = "none";
+    document.getElementById("cbuttons").style.display = "none";
+    document.getElementById("instruct").style.display = "block";
+    
+  }
+
+	function phyfun(id)
+	{
+		for(var i = 1 ; i<=20 ; i++)
+		{   
+			if(i == id)
+				continue ;
+
+			else
+			{
+			var xid = 'p'.concat(i);
+			var state = document.getElementById(xid).style.display;
+			if(state == 'block')
+			{
+				document.getElementById(xid).style.display = "none";
+			}
+			}
+		}
+		var phy = 'p'.concat(id);
+		document.getElementById(phy).style.display = "block";
+		document.getElementById(id).style.color = "orange";
+		
+	}
+function matfun(id)
+  {
+    for(var i = 21 ; i<=40 ; i++)
+    {   
+      if(i == id)
+        continue ;
+
+      else
+      {
+      var xid = 'm'.concat(i-20);
+      var state = document.getElementById(xid).style.display;
+      if(state == 'block')
+      {
+        document.getElementById(xid).style.display = "none";
+      }
+      }
+    }
+    var phy = 'm'.concat(id-20);
+    document.getElementById(phy).style.display = "block";
+    document.getElementById(id).style.color = "orange";
+    
+  }
+  function chfun(id)
+  {
+    for(var i = 41 ; i<=60 ; i++)
+    {   
+      if(i == id)
+        continue ;
+
+      else
+      {
+      var xid = 'c'.concat(i-40);
+      var state = document.getElementById(xid).style.display;
+      if(state == 'block')
+      {
+        document.getElementById(xid).style.display = "none";
+      }
+      }
+    }
+    var phy = 'c'.concat(id-40);
+    document.getElementById(phy).style.display = "block";
+    document.getElementById(id).style.color = "orange";
+    
+  }
+  
+
+	
+	</script>
+</body>
+</html>
